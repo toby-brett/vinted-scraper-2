@@ -1,0 +1,12 @@
+I am using .h5 format
+
+/ images # dataset of shape (N, 3, W, H) - dtype float32
+/ metadata # structured dataset with fields
+    - id: str
+    - title: str
+    - price: float32
+    - size: string
+    - brand: string
+    - condition: string
+    - url: string
+    - timestamp: string or int64

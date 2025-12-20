@@ -1,12 +1,13 @@
 import time
 
+from typing import List
 import logging
 
 from domain.models import *
 
 class Parser:
     @staticmethod
-    def parse_page(page_soup):
+    def parse_page(page_soup) -> List[str]:
         """Parses the webpage for all the vinted listings, avoiding advertisements"""
         listings = page_soup.find_all("div", {"class": "feed-grid__item"})
         # filter out non-product items
@@ -17,7 +18,7 @@ class Parser:
         return product_listings                   # list of html listings
 
     @staticmethod
-    def parse_listing(listing_soup):
+    def parse_listing(listing_soup) -> Listing:
         """Parses each listing, returning item_id, title, price, image_src, size, brand, condition, url and time"""
         try:
             brand = condition = size = None

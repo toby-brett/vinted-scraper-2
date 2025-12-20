@@ -37,6 +37,7 @@ class BrowserSession:
             return soup
         except Exception as e:
             logging.error(f"Unhandled exception when fetching html {e}")
+            return None
 
     def __exit__(self, exc_type, exc_val, exc_tb):
         self.page.close()
