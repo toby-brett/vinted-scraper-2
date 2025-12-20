@@ -9,9 +9,9 @@ class Listing:
     title: str
     price: float
     image_url: str          # Link to the image
-    size: str
-    brand: str
-    condition: str
+    size: Optional[str]
+    brand: Optional[str]
+    condition: Optional[str]
     url: str                # link to the listing
     discovered_at: datetime # time when scraped
 
