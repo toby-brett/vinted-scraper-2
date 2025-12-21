@@ -216,3 +216,46 @@ INFO:root:No new items found: 2025-12-21 14:50:39.250843
 INFO:root:New scraping session
 INFO:root:No new items found: 2025-12-21 14:50:53.340669
 INFO:root:New scraping session
+INFO:root:No new items found: 2025-12-21 14:51:07.386677
+INFO:root:New scraping session
+INFO:root:No new items found: 2025-12-21 14:51:18.869571
+INFO:root:New scraping session
+INFO:root:No new items found: 2025-12-21 14:51:30.184642
+INFO:root:New scraping session
+INFO:root:Created batches
+INFO:root:New item found: b'https://www.vinted.co.uk/items/7799560419-black-embroidered-logo-stussy-hoodie-vintage-baggy-fit-cotton-size-large?referrer=catalog'
+INFO:root:New item found: b'https://www.vinted.co.uk/items/7799595592-dark-blue-navy-stussy-embroidered-logo-hoodie-vintage-baggy-fit-size-xl?referrer=catalog'
+INFO:root:New item found: b'https://www.vinted.co.uk/items/7799683110-black-stussy-hoodie?referrer=catalog'
+INFO:root:Saved batches, added 3, currently holding 103 files
+INFO:root:New scraping session
+INFO:root:No new items found: 2025-12-21 14:51:52.680875
+INFO:root:New scraping session
+INFO:root:No new items found: 2025-12-21 14:52:03.836903
+INFO:root:New scraping session
+INFO:root:No new items found: 2025-12-21 14:52:14.464491
+INFO:root:New scraping session
+INFO:root:No new items found: 2025-12-21 14:52:25.381607
+INFO:root:New scraping session
+INFO:root:No new items found: 2025-12-21 14:52:37.136806
+INFO:root:New scraping session
+INFO:root:No new items found: 2025-12-21 14:52:49.490394
+INFO:root:New scraping session
+INFO:root:No new items found: 2025-12-21 14:53:01.823520
+INFO:root:New scraping session
+INFO:root:No new items found: 2025-12-21 14:53:15.224023
+INFO:root:New scraping session
+INFO:root:No new items found: 2025-12-21 14:53:27.941844
+INFO:root:New scraping session
+INFO:root:Created batches
+INFO:root:New item found: b'https://www.vinted.co.uk/items/7798177639-stussy-grey-zip-up-hoodie-logo-front-back?referrer=catalog'
+INFO:root:Saved batches, added 1, currently holding 104 files
+INFO:root:New scraping session
+ERROR:root:Unhandled exception when fetching html Page.wait_for_selector: Timeout 5000ms exceeded.
+Call log:
+waiting for locator("div.feed-grid__item") to be visible
+
+ERROR:root:Failed to parse https://www.vinted.co.uk/catalog?search_text=stussy hoodie&order=newest_first&page=1: 'NoneType' object has no attribute 'find_all'
+INFO:root:No new items found: 2025-12-21 14:54:09.861676
+INFO:root:New scraping session
+INFO:root:No new items found: 2025-12-21 14:54:20.814139
+INFO:root:New scraping session

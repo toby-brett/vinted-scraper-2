@@ -1,0 +1,38 @@
+[
+  {
+    "brand": "stussy",
+    "item": "t-shirt",
+    "pages": 1,
+    "task": "silent",
+    "model_type": "",
+    "model_path": "",
+    "price_threshold": ""
+  },
+  {
+    "brand": "stussy",
+    "item": "jacket",
+    "pages": 1,
+    "task": "silent",
+    "model_type": "",
+    "model_path": "",
+    "price_threshold": ""
+  },
+  {
+    "brand": "stussy",
+    "item": "hoodie",
+    "pages": 1,
+    "task": "silent",
+    "model_type": "",
+    "model_path": "",
+    "price_threshold": ""
+  },
+  {
+    "brand": "stussy",
+    "item": "joggers",
+    "pages": 1,
+    "task": "silent",
+    "model_type": "",
+    "model_path": "",
+    "price_threshold": ""
+  }
+]

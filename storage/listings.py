@@ -78,6 +78,9 @@ class HDF5Storer:
             except Exception as e:
                 logging.error(f"Cannot merge metadata: {e}")
 
+            for meta in metadata_batch:
+                logging.info(f"New item found: {meta[6]}")
+
             f.flush()
 
 def fetch_image_array(url: str, size=(500, 500)):

@@ -5,9 +5,6 @@ from playwright.sync_api import sync_playwright
 from playwright_stealth import stealth_sync
 import logging
 
-logging.basicConfig(level=logging.INFO)
-logger = logging.getLogger(__name__)
-
 class BrowserSession:
     def __init__(self):
         """Starts the browser session, loads context and page"""
