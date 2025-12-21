@@ -1,0 +1,136 @@
+INFO:root:New scraping session
+INFO:root:Created batches
+INFO:root:New item found: b'https://www.vinted.co.uk/items/7799531522-mens-black-stussy-shirt?referrer=catalog'
+INFO:root:Saved batches, added 1, currently holding 70 files
+INFO:root:New scraping session
+INFO:root:No new items found: 2025-12-21 14:39:51.067801
+INFO:root:New scraping session
+INFO:root:No new items found: 2025-12-21 14:40:00.957251
+INFO:root:New scraping session
+INFO:root:Created batches
+INFO:root:New item found: b'https://www.vinted.co.uk/items/7799602784-brand-new-nike-x-stussy-t-shirt?referrer=catalog'
+INFO:root:Saved batches, added 1, currently holding 71 files
+INFO:root:New scraping session
+INFO:root:No new items found: 2025-12-21 14:40:28.281719
+INFO:root:New scraping session
+INFO:root:No new items found: 2025-12-21 14:40:40.519720
+INFO:root:New scraping session
+INFO:root:No new items found: 2025-12-21 14:40:56.896537
+INFO:root:New scraping session
+INFO:root:No new items found: 2025-12-21 14:41:08.663120
+INFO:root:New scraping session
+INFO:root:No new items found: 2025-12-21 14:41:18.891520
+INFO:root:New scraping session
+INFO:root:No new items found: 2025-12-21 14:41:32.674295
+INFO:root:New scraping session
+ERROR:root:Unhandled exception when fetching html Page.wait_for_selector: Timeout 5000ms exceeded.
+Call log:
+waiting for locator("div.feed-grid__item") to be visible
+
+ERROR:root:Failed to parse https://www.vinted.co.uk/catalog?search_text=stussy t-shirt&order=newest_first&page=1: 'NoneType' object has no attribute 'find_all'
+INFO:root:No new items found: 2025-12-21 14:41:54.152363
+INFO:root:New scraping session
+INFO:root:Created batches
+INFO:root:New item found: b'https://www.vinted.co.uk/items/7799614652-vintage-00s-y2k-stussy-t-shirt-black-medium-double-sided-single-stitch-usa?referrer=catalog'
+INFO:root:Saved batches, added 1, currently holding 72 files
+INFO:root:New scraping session
+INFO:root:No new items found: 2025-12-21 14:42:21.088884
+INFO:root:New scraping session
+INFO:root:No new items found: 2025-12-21 14:42:33.219012
+INFO:root:New scraping session
+INFO:root:No new items found: 2025-12-21 14:42:45.040703
+INFO:root:New scraping session
+INFO:root:No new items found: 2025-12-21 14:42:55.863359
+INFO:root:New scraping session
+INFO:root:No new items found: 2025-12-21 14:43:07.327044
+INFO:root:New scraping session
+INFO:root:No new items found: 2025-12-21 14:43:18.621598
+INFO:root:New scraping session
+INFO:root:Created batches
+INFO:root:New item found: b'https://www.vinted.co.uk/items/7799626133-stussy-t-shirt-size-l-white?referrer=catalog'
+INFO:root:Saved batches, added 1, currently holding 73 files
+INFO:root:New scraping session
+INFO:root:Created batches
+INFO:root:New item found: b'https://www.vinted.co.uk/items/7799627382-two-stussy-t-shirts?referrer=catalog'
+INFO:root:Saved batches, added 1, currently holding 74 files
+INFO:root:New scraping session
+INFO:root:No new items found: 2025-12-21 14:43:52.124146
+INFO:root:New scraping session
+INFO:root:No new items found: 2025-12-21 14:44:01.828953
+INFO:root:New scraping session
+INFO:root:Created batches
+INFO:root:New item found: b'https://www.vinted.co.uk/items/7799632821-stussy-somethings-cookin-t-shirt?referrer=catalog'
+INFO:root:Saved batches, added 1, currently holding 75 files
+INFO:root:New scraping session
+INFO:root:No new items found: 2025-12-21 14:44:24.785083
+INFO:root:New scraping session
+INFO:root:No new items found: 2025-12-21 14:44:34.812761
+INFO:root:New scraping session
+INFO:root:No new items found: 2025-12-21 14:44:45.852969
+INFO:root:New scraping session
+INFO:root:No new items found: 2025-12-21 14:44:56.023750
+INFO:root:New scraping session
+INFO:root:No new items found: 2025-12-21 14:45:07.535280
+INFO:root:New scraping session
+INFO:root:No new items found: 2025-12-21 14:45:18.211877
+INFO:root:New scraping session
+INFO:root:No new items found: 2025-12-21 14:45:28.986496
+INFO:root:New scraping session
+INFO:root:No new items found: 2025-12-21 14:45:39.593364
+INFO:root:New scraping session
+INFO:root:No new items found: 2025-12-21 14:45:55.310987
+INFO:root:New scraping session
+INFO:root:No new items found: 2025-12-21 14:46:09.065177
+INFO:root:New scraping session
+INFO:root:Created batches
+INFO:root:New item found: b'https://www.vinted.co.uk/items/7799646305-stussy-t-shirt-black-size-l?referrer=catalog'
+INFO:root:Saved batches, added 1, currently holding 76 files
+INFO:root:New scraping session
+INFO:root:No new items found: 2025-12-21 14:46:32.864028
+INFO:root:New scraping session
+INFO:root:No new items found: 2025-12-21 14:46:43.841350
+INFO:root:New scraping session
+INFO:root:No new items found: 2025-12-21 14:46:55.184493
+INFO:root:New scraping session
+INFO:root:No new items found: 2025-12-21 14:47:05.811955
+INFO:root:New scraping session
+INFO:root:No new items found: 2025-12-21 14:47:18.180953
+INFO:root:New scraping session
+INFO:root:No new items found: 2025-12-21 14:47:28.623733
+INFO:root:New scraping session
+INFO:root:No new items found: 2025-12-21 14:47:41.731699
+INFO:root:New scraping session
+INFO:root:No new items found: 2025-12-21 14:47:52.195716
+INFO:root:New scraping session
+INFO:root:No new items found: 2025-12-21 14:48:04.407723
+INFO:root:New scraping session
+INFO:root:No new items found: 2025-12-21 14:48:14.413510
+INFO:root:New scraping session
+INFO:root:Created batches
+INFO:root:New item found: b'https://www.vinted.co.uk/items/7799661970-stussy-t-shirt-size-l-grey?referrer=catalog'
+INFO:root:Saved batches, added 1, currently holding 77 files
+INFO:root:New scraping session
+INFO:root:Created batches
+INFO:root:New item found: b'https://www.vinted.co.uk/items/7797953036-stussy-x-nike-tee?referrer=catalog'
+INFO:root:Saved batches, added 1, currently holding 78 files
+INFO:root:New scraping session
+INFO:root:No new items found: 2025-12-21 14:48:55.807228
+INFO:root:New scraping session
+INFO:root:No new items found: 2025-12-21 14:49:10.015511
+INFO:root:New scraping session
+INFO:root:No new items found: 2025-12-21 14:49:21.325784
+INFO:root:New scraping session
+INFO:root:No new items found: 2025-12-21 14:49:34.243175
+INFO:root:New scraping session
+INFO:root:No new items found: 2025-12-21 14:49:46.276018
+INFO:root:New scraping session
+INFO:root:No new items found: 2025-12-21 14:49:57.938005
+INFO:root:New scraping session
+INFO:root:No new items found: 2025-12-21 14:50:11.472947
+INFO:root:New scraping session
+INFO:root:No new items found: 2025-12-21 14:50:25.129196
+INFO:root:New scraping session
+INFO:root:No new items found: 2025-12-21 14:50:38.877558
+INFO:root:New scraping session
+INFO:root:No new items found: 2025-12-21 14:50:52.590405
+INFO:root:New scraping session

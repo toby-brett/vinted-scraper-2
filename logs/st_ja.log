@@ -1,0 +1,159 @@
+WARNING:root:ID file does not exist, creating new one: /home/opc/vinted-scraper-2/ids/st_ja.pkl
+INFO:root:New scraping session
+INFO:root:Created batches
+INFO:root:New item found: b'https://www.vinted.co.uk/items/7799542168-stussy-green-sherpa-fleece?referrer=catalog'
+INFO:root:New item found: b'https://www.vinted.co.uk/items/7799348924-stussy-black-hooded-jacket-xlarge?referrer=catalog'
+INFO:root:New item found: b'https://www.vinted.co.uk/items/7799111849-stussy-windbreaker-brand-new-size-m?referrer=catalog'
+INFO:root:New item found: b'https://www.vinted.co.uk/items/7799035632-stussy-puffer-coat?referrer=catalog'
+INFO:root:New item found: b'https://www.vinted.co.uk/items/7798931231-stussy-work-jacket?referrer=catalog'
+INFO:root:New item found: b'https://www.vinted.co.uk/items/7798962338-stussy-quilted-nylon-overshirtshacket?referrer=catalog'
+INFO:root:New item found: b'https://www.vinted.co.uk/items/7798699800-stussy-puffer-coat-greyblack-large?referrer=catalog'
+INFO:root:New item found: b'https://www.vinted.co.uk/items/7797204881-stussy-hoodie?referrer=catalog'
+INFO:root:New item found: b'https://www.vinted.co.uk/items/7794006032-stussy-shadow-plaid-jacket?referrer=catalog'
+INFO:root:New item found: b'https://www.vinted.co.uk/items/7797053097-stussy-hoodie?referrer=catalog'
+INFO:root:New item found: b'https://www.vinted.co.uk/items/7797052913-stussy-hoodie?referrer=catalog'
+INFO:root:New item found: b'https://www.vinted.co.uk/items/7797044909-stussy-hoodie?referrer=catalog'
+INFO:root:New item found: b'https://www.vinted.co.uk/items/7796917911-stussy-jacket?referrer=catalog'
+INFO:root:New item found: b'https://www.vinted.co.uk/items/7796892526-nike-x-stussy-mens-wool-heavyweight-pin-stripe-black-jacket-small?referrer=catalog'
+INFO:root:New item found: b'https://www.vinted.co.uk/items/7796702421-stussy-denim-jacket-m?referrer=catalog'
+INFO:root:New item found: b'https://www.vinted.co.uk/items/7796688554-stussy-hooded-jacket-m?referrer=catalog'
+INFO:root:New item found: b'https://www.vinted.co.uk/items/7796650698-stussy-jacket-l?referrer=catalog'
+INFO:root:New item found: b'https://www.vinted.co.uk/items/7796342498-stussy-90s-navygreen-plaid-zip-up-jacket?referrer=catalog'
+INFO:root:New item found: b'https://www.vinted.co.uk/items/7796268034-stussy-jacket-s?referrer=catalog'
+INFO:root:New item found: b'https://www.vinted.co.uk/items/7796149800-stussy-vintage-rework-black-hooded-jacket?referrer=catalog'
+INFO:root:New item found: b'https://www.vinted.co.uk/items/7796064297-white-stussy-jacket-l?referrer=catalog'
+INFO:root:New item found: b'https://www.vinted.co.uk/items/7796041099-stussy-jacket?referrer=catalog'
+INFO:root:New item found: b'https://www.vinted.co.uk/items/7796022097-stussy-jacket-m?referrer=catalog'
+INFO:root:New item found: b'https://www.vinted.co.uk/items/7796015097-stussy-basic-logo-long-sleeve-t-shirt-mens-size-medium?referrer=catalog'
+INFO:root:New item found: b'https://www.vinted.co.uk/items/7796012574-stussy-denim-jacket-l?referrer=catalog'
+INFO:root:New item found: b'https://www.vinted.co.uk/items/7796010549-vintage-stussy-outdoor-fleece-jacket?referrer=catalog'
+INFO:root:New item found: b'https://www.vinted.co.uk/items/7796006061-stussy-jacket-l?referrer=catalog'
+INFO:root:New item found: b'https://www.vinted.co.uk/items/7795785440-stussy-rework-jacket?referrer=catalog'
+INFO:root:New item found: b'https://www.vinted.co.uk/items/7795234975-stussy-fleece-shirt-jacket?referrer=catalog'
+INFO:root:Saved batches, added 29, currently holding 29 files
+INFO:root:New scraping session
+INFO:root:No new items found: 2025-12-21 14:39:53.223330
+INFO:root:New scraping session
+INFO:root:No new items found: 2025-12-21 14:40:04.200914
+INFO:root:New scraping session
+INFO:root:Created batches
+INFO:root:New item found: b'https://www.vinted.co.uk/items/7795105456-stussy-japan-exclusive-down-puffer-jacket-camo-black-size-m?referrer=catalog'
+INFO:root:New item found: b'https://www.vinted.co.uk/items/7794854423-stussy-black-and-pink-puffer-jacket-size-l?referrer=catalog'
+INFO:root:New item found: b'https://www.vinted.co.uk/items/7794839809-stussy-puffer-size-l?referrer=catalog'
+INFO:root:New item found: b'https://www.vinted.co.uk/items/7794518113-stussy-x-futura-jacket?referrer=catalog'
+INFO:root:New item found: b'https://www.vinted.co.uk/items/7794103981-stussy-beach-shell-wave-dye-jacket-l?referrer=catalog'
+INFO:root:New item found: b'https://www.vinted.co.uk/items/7794059784-stussy-down-feather-puffer-jacket-size-l-authentic?referrer=catalog'
+INFO:root:New item found: b'https://www.vinted.co.uk/items/7793980231-mens-stussy-jacket?referrer=catalog'
+INFO:root:New item found: b'https://www.vinted.co.uk/items/7793956707-stussy-puffer-jacket?referrer=catalog'
+INFO:root:New item found: b'https://www.vinted.co.uk/items/7793906904-vintage-2000s-stussy-monogram-reversible-puffer-jacket?referrer=catalog'
+INFO:root:New item found: b'https://www.vinted.co.uk/items/7793647337-stussy-beach-jacket-sunfade?referrer=catalog'
+INFO:root:Saved batches, added 10, currently holding 39 files
+INFO:root:New scraping session
+INFO:root:No new items found: 2025-12-21 14:40:29.320156
+INFO:root:New scraping session
+INFO:root:Created batches
+INFO:root:New item found: b'https://www.vinted.co.uk/items/7796195332-stussy-hoodie-s?referrer=catalog'
+INFO:root:Saved batches, added 1, currently holding 40 files
+INFO:root:New scraping session
+INFO:root:No new items found: 2025-12-21 14:40:57.703200
+INFO:root:New scraping session
+INFO:root:No new items found: 2025-12-21 14:41:09.751265
+INFO:root:New scraping session
+INFO:root:No new items found: 2025-12-21 14:41:19.843752
+INFO:root:New scraping session
+INFO:root:No new items found: 2025-12-21 14:41:33.047395
+INFO:root:New scraping session
+INFO:root:No new items found: 2025-12-21 14:41:43.604794
+INFO:root:New scraping session
+INFO:root:No new items found: 2025-12-21 14:41:53.920572
+INFO:root:New scraping session
+INFO:root:No new items found: 2025-12-21 14:42:05.688089
+INFO:root:New scraping session
+INFO:root:No new items found: 2025-12-21 14:42:21.714330
+INFO:root:New scraping session
+INFO:root:No new items found: 2025-12-21 14:42:33.593819
+INFO:root:New scraping session
+INFO:root:No new items found: 2025-12-21 14:42:45.681182
+INFO:root:New scraping session
+INFO:root:No new items found: 2025-12-21 14:42:57.987064
+INFO:root:New scraping session
+INFO:root:No new items found: 2025-12-21 14:43:09.481372
+INFO:root:New scraping session
+INFO:root:No new items found: 2025-12-21 14:43:21.270995
+INFO:root:New scraping session
+INFO:root:No new items found: 2025-12-21 14:43:33.016209
+INFO:root:New scraping session
+INFO:root:Created batches
+INFO:root:New item found: b'https://www.vinted.co.uk/items/7793183974-stussy-designer-zip-up-size-s?referrer=catalog'
+INFO:root:Saved batches, added 1, currently holding 41 files
+INFO:root:New scraping session
+INFO:root:No new items found: 2025-12-21 14:43:56.085852
+INFO:root:New scraping session
+INFO:root:No new items found: 2025-12-21 14:44:07.868408
+INFO:root:New scraping session
+INFO:root:No new items found: 2025-12-21 14:44:19.993865
+INFO:root:New scraping session
+INFO:root:No new items found: 2025-12-21 14:44:31.099677
+INFO:root:New scraping session
+INFO:root:No new items found: 2025-12-21 14:44:42.713862
+INFO:root:New scraping session
+INFO:root:No new items found: 2025-12-21 14:44:53.519208
+INFO:root:New scraping session
+INFO:root:No new items found: 2025-12-21 14:45:03.918464
+INFO:root:New scraping session
+INFO:root:No new items found: 2025-12-21 14:45:15.721786
+INFO:root:New scraping session
+INFO:root:No new items found: 2025-12-21 14:45:26.980975
+INFO:root:New scraping session
+INFO:root:No new items found: 2025-12-21 14:45:37.937530
+INFO:root:New scraping session
+INFO:root:Created batches
+INFO:root:New item found: b'https://www.vinted.co.uk/items/7792957051-stussy-black-puffer-jacket-size-m?referrer=catalog'
+INFO:root:Saved batches, added 1, currently holding 42 files
+INFO:root:New scraping session
+INFO:root:No new items found: 2025-12-21 14:46:08.690885
+INFO:root:New scraping session
+INFO:root:No new items found: 2025-12-21 14:46:20.612582
+INFO:root:New scraping session
+INFO:root:No new items found: 2025-12-21 14:46:33.103090
+INFO:root:New scraping session
+INFO:root:No new items found: 2025-12-21 14:46:44.240322
+INFO:root:New scraping session
+INFO:root:No new items found: 2025-12-21 14:46:55.500855
+INFO:root:New scraping session
+INFO:root:No new items found: 2025-12-21 14:47:06.564870
+INFO:root:New scraping session
+INFO:root:No new items found: 2025-12-21 14:47:19.423802
+INFO:root:New scraping session
+INFO:root:No new items found: 2025-12-21 14:47:30.263077
+INFO:root:New scraping session
+INFO:root:No new items found: 2025-12-21 14:47:43.433219
+INFO:root:New scraping session
+INFO:root:No new items found: 2025-12-21 14:47:55.318705
+INFO:root:New scraping session
+INFO:root:No new items found: 2025-12-21 14:48:09.283159
+INFO:root:New scraping session
+INFO:root:No new items found: 2025-12-21 14:48:27.535340
+INFO:root:New scraping session
+INFO:root:No new items found: 2025-12-21 14:48:39.559393
+INFO:root:New scraping session
+INFO:root:No new items found: 2025-12-21 14:48:55.296762
+INFO:root:New scraping session
+INFO:root:No new items found: 2025-12-21 14:49:09.771592
+INFO:root:New scraping session
+INFO:root:No new items found: 2025-12-21 14:49:21.561715
+INFO:root:New scraping session
+INFO:root:No new items found: 2025-12-21 14:49:34.046975
+INFO:root:New scraping session
+INFO:root:No new items found: 2025-12-21 14:49:46.047748
+INFO:root:New scraping session
+INFO:root:No new items found: 2025-12-21 14:49:57.932869
+INFO:root:New scraping session
+INFO:root:No new items found: 2025-12-21 14:50:10.652169
+INFO:root:New scraping session
+INFO:root:No new items found: 2025-12-21 14:50:24.957483
+INFO:root:New scraping session
+INFO:root:No new items found: 2025-12-21 14:50:38.947670
+INFO:root:New scraping session
+INFO:root:No new items found: 2025-12-21 14:50:53.142097
+INFO:root:New scraping session

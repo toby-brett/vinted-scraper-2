@@ -1,0 +1,142 @@
+WARNING:root:ID file does not exist, creating new one: /home/opc/vinted-scraper-2/ids/st_jo.pkl
+INFO:root:New scraping session
+INFO:root:Created batches
+INFO:root:New item found: b'https://www.vinted.co.uk/items/7799521984-black-nike-x-stussy-joggers?referrer=catalog'
+INFO:root:New item found: b'https://www.vinted.co.uk/items/7799326585-grey-nike-stussy-joggers?referrer=catalog'
+INFO:root:New item found: b'https://www.vinted.co.uk/items/7799089695-grey-nike-x-stussy-joggers-xs?referrer=catalog'
+INFO:root:New item found: b'https://www.vinted.co.uk/items/7799019941-stussy-x-nike-grey-joggers?referrer=catalog'
+INFO:root:New item found: b'https://www.vinted.co.uk/items/7798848886-nike-stussy-kids-tracksuit?referrer=catalog'
+INFO:root:New item found: b'https://www.vinted.co.uk/items/7798699328-nike-x-stussy-grey-joggers?referrer=catalog'
+INFO:root:New item found: b'https://www.vinted.co.uk/items/7798177843-nike-x-stussy-joggers?referrer=catalog'
+INFO:root:New item found: b'https://www.vinted.co.uk/items/7793778555-grey-nike-x-stussy-joggers?referrer=catalog'
+INFO:root:New item found: b'https://www.vinted.co.uk/items/7796950175-nike-x-stussy-joggers?referrer=catalog'
+INFO:root:New item found: b'https://www.vinted.co.uk/items/7789098043-nike-stussy-joggers?referrer=catalog'
+INFO:root:New item found: b'https://www.vinted.co.uk/items/7796455459-nike-x-stussy-joggers?referrer=catalog'
+INFO:root:New item found: b'https://www.vinted.co.uk/items/7796039157-reworked-stussy-open-leg-joggers?referrer=catalog'
+INFO:root:New item found: b'https://www.vinted.co.uk/items/7795884520-nike-x-stussy-joggers-black?referrer=catalog'
+INFO:root:New item found: b'https://www.vinted.co.uk/items/7795632613-black-nike-x-stussy-joggers-xs?referrer=catalog'
+INFO:root:New item found: b'https://www.vinted.co.uk/items/7795458000-blue-nike-stussy-joggers-size-s?referrer=catalog'
+INFO:root:New item found: b'https://www.vinted.co.uk/items/7795281335-nike-stussy-joggers?referrer=catalog'
+INFO:root:New item found: b'https://www.vinted.co.uk/items/7794938325-nike-x-stussy-grey-joggers-large?referrer=catalog'
+INFO:root:New item found: b'https://www.vinted.co.uk/items/7794634404-nike-x-stussy-black-joggers?referrer=catalog'
+INFO:root:New item found: b'https://www.vinted.co.uk/items/7794517015-light-grey-reworked-stussy-zip-hoodie-clean-daily-layer-m?referrer=catalog'
+INFO:root:New item found: b'https://www.vinted.co.uk/items/7793208484-grey-stussy-tracksuit-set?referrer=catalog'
+INFO:root:New item found: b'https://www.vinted.co.uk/items/7792266087-nike-stussy-joggers?referrer=catalog'
+INFO:root:Saved batches, added 21, currently holding 21 files
+INFO:root:New scraping session
+INFO:root:Created batches
+INFO:root:New item found: b'https://www.vinted.co.uk/items/7795839815-biege-stussy-sweatshirt-l?referrer=catalog'
+INFO:root:Saved batches, added 1, currently holding 22 files
+INFO:root:New scraping session
+INFO:root:No new items found: 2025-12-21 14:40:02.828198
+INFO:root:New scraping session
+INFO:root:No new items found: 2025-12-21 14:40:14.292137
+INFO:root:New scraping session
+INFO:root:No new items found: 2025-12-21 14:40:27.829336
+INFO:root:New scraping session
+INFO:root:No new items found: 2025-12-21 14:40:39.667695
+INFO:root:New scraping session
+INFO:root:No new items found: 2025-12-21 14:40:56.077889
+INFO:root:New scraping session
+INFO:root:No new items found: 2025-12-21 14:41:06.628736
+INFO:root:New scraping session
+INFO:root:No new items found: 2025-12-21 14:41:16.568333
+INFO:root:New scraping session
+INFO:root:No new items found: 2025-12-21 14:41:27.969667
+INFO:root:New scraping session
+INFO:root:No new items found: 2025-12-21 14:41:38.421987
+INFO:root:New scraping session
+INFO:root:No new items found: 2025-12-21 14:41:48.537049
+INFO:root:New scraping session
+INFO:root:No new items found: 2025-12-21 14:41:58.855646
+INFO:root:New scraping session
+INFO:root:No new items found: 2025-12-21 14:42:09.584519
+INFO:root:New scraping session
+INFO:root:No new items found: 2025-12-21 14:42:23.624342
+INFO:root:New scraping session
+INFO:root:No new items found: 2025-12-21 14:42:34.948722
+INFO:root:New scraping session
+INFO:root:No new items found: 2025-12-21 14:42:47.124272
+INFO:root:New scraping session
+INFO:root:No new items found: 2025-12-21 14:42:58.309002
+INFO:root:New scraping session
+INFO:root:No new items found: 2025-12-21 14:43:09.499135
+INFO:root:New scraping session
+INFO:root:No new items found: 2025-12-21 14:43:21.274927
+INFO:root:New scraping session
+INFO:root:No new items found: 2025-12-21 14:43:32.919681
+INFO:root:New scraping session
+INFO:root:No new items found: 2025-12-21 14:43:45.049663
+INFO:root:New scraping session
+INFO:root:No new items found: 2025-12-21 14:43:55.798705
+INFO:root:New scraping session
+INFO:root:No new items found: 2025-12-21 14:44:07.112207
+INFO:root:New scraping session
+INFO:root:No new items found: 2025-12-21 14:44:19.033981
+INFO:root:New scraping session
+INFO:root:No new items found: 2025-12-21 14:44:30.558075
+INFO:root:New scraping session
+INFO:root:No new items found: 2025-12-21 14:44:42.492758
+INFO:root:New scraping session
+INFO:root:No new items found: 2025-12-21 14:44:52.833134
+INFO:root:New scraping session
+INFO:root:No new items found: 2025-12-21 14:45:03.623340
+INFO:root:New scraping session
+INFO:root:No new items found: 2025-12-21 14:45:15.397821
+INFO:root:New scraping session
+INFO:root:No new items found: 2025-12-21 14:45:26.229569
+INFO:root:New scraping session
+INFO:root:No new items found: 2025-12-21 14:45:36.819358
+INFO:root:New scraping session
+INFO:root:No new items found: 2025-12-21 14:45:52.760867
+INFO:root:New scraping session
+INFO:root:No new items found: 2025-12-21 14:46:06.115314
+INFO:root:New scraping session
+INFO:root:No new items found: 2025-12-21 14:46:17.621808
+INFO:root:New scraping session
+INFO:root:No new items found: 2025-12-21 14:46:28.984528
+INFO:root:New scraping session
+INFO:root:No new items found: 2025-12-21 14:46:39.002079
+INFO:root:New scraping session
+INFO:root:No new items found: 2025-12-21 14:46:48.739989
+INFO:root:New scraping session
+INFO:root:No new items found: 2025-12-21 14:46:58.805709
+INFO:root:New scraping session
+INFO:root:No new items found: 2025-12-21 14:47:09.396393
+INFO:root:New scraping session
+INFO:root:No new items found: 2025-12-21 14:47:21.371457
+INFO:root:New scraping session
+INFO:root:No new items found: 2025-12-21 14:47:31.684435
+INFO:root:New scraping session
+INFO:root:No new items found: 2025-12-21 14:47:43.759250
+INFO:root:New scraping session
+INFO:root:No new items found: 2025-12-21 14:47:56.016008
+INFO:root:New scraping session
+INFO:root:No new items found: 2025-12-21 14:48:09.419966
+INFO:root:New scraping session
+INFO:root:No new items found: 2025-12-21 14:48:27.133868
+INFO:root:New scraping session
+INFO:root:No new items found: 2025-12-21 14:48:38.970874
+INFO:root:New scraping session
+INFO:root:No new items found: 2025-12-21 14:48:54.045274
+INFO:root:New scraping session
+INFO:root:No new items found: 2025-12-21 14:49:08.275210
+INFO:root:New scraping session
+INFO:root:No new items found: 2025-12-21 14:49:19.192475
+INFO:root:New scraping session
+INFO:root:No new items found: 2025-12-21 14:49:30.899944
+INFO:root:New scraping session
+INFO:root:No new items found: 2025-12-21 14:49:41.504398
+INFO:root:New scraping session
+INFO:root:No new items found: 2025-12-21 14:49:51.606173
+INFO:root:New scraping session
+INFO:root:No new items found: 2025-12-21 14:50:01.640728
+INFO:root:New scraping session
+INFO:root:No new items found: 2025-12-21 14:50:14.419407
+INFO:root:New scraping session
+INFO:root:No new items found: 2025-12-21 14:50:26.482691
+INFO:root:New scraping session
+INFO:root:No new items found: 2025-12-21 14:50:39.686377
+INFO:root:New scraping session
+INFO:root:No new items found: 2025-12-21 14:50:53.471045
+INFO:root:New scraping session
