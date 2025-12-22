@@ -5,6 +5,10 @@ from bs4 import BeautifulSoup
 from playwright.sync_api import sync_playwright
 from playwright_stealth import stealth_sync
 import logging
+from zenrows import ZenRowsClient
+
+from config.settings import zr_client_id
+
 
 def random_user_agent():
     agents = [
@@ -17,6 +21,8 @@ def random_user_agent():
 class BrowserSession:
     def __init__(self):
         """Starts the browser session, loads context and page"""
+
+        self.client = ZenRowsClient(zr_client_id)
 
         self.instance = sync_playwright().start()                               # playwright instance, manages playwright session
         self.browser = self.instance.chromium.launch(
@@ -48,10 +54,13 @@ class BrowserSession:
 
     def fetch_html(self, url):
         try:
-            self.page.goto(url, timeout=30000)
-            self.page.wait_for_selector("div.feed-grid__item", timeout=10000) # waits for js to load content
-            soup = BeautifulSoup(self.page.content(), "lxml")
+            response = self.client.get(url)
+            soup = BeautifulSoup(response.text, 'lxml')
             return soup
+            # self.page.goto(url, timeout=30000)
+            # self.page.wait_for_selector("div.feed-grid__item", timeout=10000) # waits for js to load content
+            # soup = BeautifulSoup(self.page.content(), "lxml")
+            # return soup
         except Exception as e:
             logging.error(f"Unhandled exception when fetching html {e}")
             return None
