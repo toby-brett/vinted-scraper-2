@@ -1,3 +1,5 @@
+import os
+
 from typing import List
 import h5py
 import numpy as np
@@ -66,17 +68,14 @@ class HDF5Storer:
                 new_size = old_size + image_batch.shape[0]
                 img_ds.resize(new_size, axis=0)
                 img_ds[old_size:new_size] = image_batch
-            except Exception as e:
-                logging.error(f"Cannot merge images: {e}")
 
-            try:
                 meta_ds = f['metadata']
                 old_size_meta = meta_ds.shape[0]
                 new_size_meta = old_size_meta + metadata_batch.shape[0]
                 meta_ds.resize(new_size_meta, axis=0)
                 meta_ds[old_size_meta:new_size_meta] = metadata_batch
             except Exception as e:
-                logging.error(f"Cannot merge metadata: {e}")
+                logging.error(f"Cannot merge data: {e}")
 
             for meta in metadata_batch:
                 logging.info(f"New item found: {meta[6]}")

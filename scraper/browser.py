@@ -1,18 +1,38 @@
 import time
 
+import random
 from bs4 import BeautifulSoup
 from playwright.sync_api import sync_playwright
 from playwright_stealth import stealth_sync
 import logging
+
+def random_user_agent():
+    agents = [
+        "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0 Safari/537.36",
+        "Mozilla/5.0 (Macintosh; Intel Mac OS X 13_4) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.0 Safari/605.1.15",
+        "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0 Safari/537.36"
+    ]
+    return random.choice(agents)
 
 class BrowserSession:
     def __init__(self):
         """Starts the browser session, loads context and page"""
 
         self.instance = sync_playwright().start()                               # playwright instance, manages playwright session
-        self.browser = self.instance.chromium.launch(headless=True)             # actual browser used
+        self.browser = self.instance.chromium.launch(
+            headless=False,  # HEADLESS = HIGH DETECTION on Vinted; keep it visible
+            slow_mo=50,
+            args=[
+                "--disable-blink-features=AutomationControlled",
+                "--no-sandbox",
+                "--disable-dev-shm-usage",
+                "--disable-web-security",
+                "--disable-features=IsolateOrigins,site-per-process",
+                "--ignore-certificate-errors",
+            ],
+        )
         self.context = self.browser.new_context(                                # separate browser profile
-            user_agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 13_4) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.0 Safari/605.1.15",
+            user_agent=random_user_agent(),
             locale="en-GB",
             timezone_id="Europe/London",
             viewport={"width": 1366, "height": 768},
@@ -29,7 +49,7 @@ class BrowserSession:
     def fetch_html(self, url):
         try:
             self.page.goto(url, timeout=30000)
-            self.page.wait_for_selector("div.feed-grid__item", timeout=5000) # waits for js to load content
+            self.page.wait_for_selector("div.feed-grid__item", timeout=10000) # waits for js to load content
             soup = BeautifulSoup(self.page.content(), "lxml")
             return soup
         except Exception as e:

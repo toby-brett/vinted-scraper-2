@@ -30,8 +30,10 @@ if __name__ == "__main__":
 
         logging.info("New scraping session")
         listings = scrape_listings([url])
+
         logging.debug(f"app/scrape_runner.py: scraped listings {datetime.now()}")
         listings_filtered = filter_listings(listings, seen_ids, brand)
+
         logging.debug(f"app/scrape_runner.py: filtered listings {datetime.now()}")
         new_ids = get_ids_from_listings(listings_filtered)
 

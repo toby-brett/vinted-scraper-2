@@ -70,7 +70,7 @@ def parse_job(job):
     data_path = ROOT_DATA + get_file_starter(brand, item) + '.h5'
     id_path = ROOT_ID + get_file_starter(brand, item) + '.pkl'
 
-    search = brand + ' ' + item
+    search = brand + '%20' + item
 
     if task == "silent":
         return search, brand, item, task, None, None, id_path, data_path
