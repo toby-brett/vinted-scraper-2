@@ -5,9 +5,11 @@ from bs4 import BeautifulSoup
 from playwright.sync_api import sync_playwright
 from playwright_stealth import stealth_sync
 import logging
-from zenrows import ZenRowsClient
 
-from config.settings import zr_client_id
+from utils.utils import *
+
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
 
 
 def random_user_agent():
@@ -22,12 +24,13 @@ class BrowserSession:
     def __init__(self):
         """Starts the browser session, loads context and page"""
 
-        self.client = ZenRowsClient(zr_client_id)
+        # proxy_str = f"http://{proxy_user}:{proxy_pass}@{proxy_ip}:{proxy_port}"
 
         self.instance = sync_playwright().start()                               # playwright instance, manages playwright session
         self.browser = self.instance.chromium.launch(
-            headless=False,  # HEADLESS = HIGH DETECTION on Vinted; keep it visible
+            headless=True,  # HEADLESS = HIGH DETECTION on Vinted; keep it visible
             slow_mo=50,
+            # proxy={"server": proxy_str},
             args=[
                 "--disable-blink-features=AutomationControlled",
                 "--no-sandbox",
@@ -45,6 +48,7 @@ class BrowserSession:
             device_scale_factor=1,
             java_script_enabled=True,
         )
+
         self.page = self.context.new_page()                                     # single browser tab
         stealth_sync(self.page)
 
@@ -54,18 +58,43 @@ class BrowserSession:
 
     def fetch_html(self, url):
         try:
-            response = self.client.get(url)
-            soup = BeautifulSoup(response.text, 'lxml')
-            return soup
-            # self.page.goto(url, timeout=30000)
-            # self.page.wait_for_selector("div.feed-grid__item", timeout=10000) # waits for js to load content
-            # soup = BeautifulSoup(self.page.content(), "lxml")
-            # return soup
+            self.page.goto(url, timeout=60000, wait_until="load")
+
+            # If Cloudflare challenge appears, wait it out
+            if "Just a moment" in self.page.title():
+                logging.info("Cloudflare challenge detected, waiting...")
+
+                # Wait until challenge iframe disappears OR URL changes
+                self.page.wait_for_function(
+                    "() => !document.querySelector('iframe[src*=\"challenges.cloudflare.com\"]')",
+                    timeout=60000
+                )
+
+            # Wait for actual Vinted content
+            self.page.wait_for_selector(
+                "div.feed-grid__item",
+                timeout=30000
+            )
+
+            html = self.page.content()
+            return BeautifulSoup(html, "lxml")
+
         except Exception as e:
             logging.error(f"Unhandled exception when fetching html {e}")
             return None
 
+    def reset_page(self):
+        if self.page:
+            self.page.close()
+        self.page = self.browser.new_page()
+
     def __exit__(self, exc_type, exc_val, exc_tb):
+        self.page.close()
+        self.context.close()
+        self.browser.close()
+        self.instance.stop()
+
+    def close(self):
         self.page.close()
         self.context.close()
         self.browser.close()

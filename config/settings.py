@@ -1,5 +1,14 @@
 ROOT_DATA = '/mnt/volume100/data/'
 ROOT_ID = '/home/opc/vinted-scraper-2/ids/'
 
-# Zenrows
-zr_client_id = "4657366a97ff86ac46a338dba5799e8cbbb7738c"
+# telegram
+BOT_TOKEN = "7883319571:AAFmWkHKXKt6UkYlUqT6DSrNsXy2gk0jhzg"
+CHAT_ID = "8500213100"
+
+# evaluation
+EXPENSES = 2.9 + 0.9
+
+# scraping
+MAX_RETRIES = 3
+RETRY_SLEEP_SECONDS = 300
+PAGE_RESET_TRY = 2

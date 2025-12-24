@@ -66,6 +66,9 @@ def parse_job(job):
     model_type = job["model_type"]
     model_path = job["model_path"]
     price_threshold = job["price_threshold"]
+    num_classes = job["num_classes"]
+    population_metrics = job["population_metrics"]
+    value_dict = job["value_dict"]
 
     data_path = ROOT_DATA + get_file_starter(brand, item) + '.h5'
     id_path = ROOT_ID + get_file_starter(brand, item) + '.pkl'
@@ -73,4 +76,11 @@ def parse_job(job):
     search = brand + '%20' + item
 
     if task == "silent":
-        return search, brand, item, task, None, None, id_path, data_path
+        return search, brand, item, task, id_path, data_path, None, None, None, None, None
+
+    elif task == "alert":
+        return search, brand, item, task, id_path, data_path, price_threshold, model_path, model_type, num_classes, population_metrics, value_dict
+
+class FatalScraperError(RuntimeError):
+    """Unrecoverable error – scraper must stop."""
+    pass
