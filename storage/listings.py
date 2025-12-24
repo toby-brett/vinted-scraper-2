@@ -82,7 +82,7 @@ class HDF5Storer:
 
             f.flush()
 
-def fetch_image_array(url: str, size=(500, 500)):
+def fetch_image_array(url: str, size=(500, 500)) -> np.ndarray:
     response = requests.get(url, timeout=10)
     response.raise_for_status()
 

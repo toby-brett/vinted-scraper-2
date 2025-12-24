@@ -1,18 +1,26 @@
+import numpy as np
+import torch
 from torchvision import transforms
+from PIL import Image
+import logging
 
-def preprocess(pil_image, size=256):
+def preprocess(numpy_array: np.ndarray, size=256) -> torch.Tensor:
     """
     Takes an image and converts it to an ML ready tensor for eval
-    :param size: resize amount
-    :param pil_image: input scraped imaged
-    :return: tensor ready for eval
     """
+    try:
+        resnet_transform = transforms.Compose([
+            transforms.ToPILImage(),  # Robust check to ensure it's PIL
+            transforms.Resize((size, size)),
+            transforms.ToTensor(),
+            transforms.Normalize(mean=[0.485, 0.456, 0.406],
+                                 std=[0.229, 0.224, 0.225])
+        ])
 
-    resnet_transform = transforms.Compose([
-        transforms.Resize((size, size)),  # or your target size
-        transforms.ToTensor(),
-        transforms.Normalize(mean=[0.485, 0.456, 0.406],
-                             std=[0.229, 0.224, 0.225])
-    ])
+        tensor = resnet_transform(numpy_array)
 
-    return resnet_transform(pil_image)
+    except Exception as e:
+        logging.error(f"Failed to convert numpy array to tensor: {e}")
+        raise e
+
+    return tensor.unsqueeze(0)

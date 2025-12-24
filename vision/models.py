@@ -1,13 +1,13 @@
 import torch.nn as nn
 from torchvision.models import resnet34, resnet50
+from torchvision import models
+import torch
 
 class REGRESSOR(nn.Module):
-    """
-    Resnet 7 on kaggle
-    """
     def __init__(self):
         super().__init__()
         self.backbone = resnet34(weights="IMAGENET1K_V1")
+
         for name, param in self.backbone.named_parameters():
             if "layer3" in name or "layer4" in name:
                 param.requires_grad = True
@@ -19,16 +19,14 @@ class REGRESSOR(nn.Module):
                 m.eval()
                 m.requires_grad_(False)
 
-        self.backbone.fc = nn.Identity()  # remove classification head
+        self.backbone.fc = nn.Identity()
         self.regressor = nn.Sequential(
             nn.Linear(512, 512),
             nn.ReLU(),
             nn.Dropout(0.5),
-
             nn.Linear(512, 256),
             nn.ReLU(),
             nn.Dropout(0.5),
-
             nn.Linear(256, 1)
         )
 
@@ -37,29 +35,24 @@ class REGRESSOR(nn.Module):
         return self.regressor(x).squeeze(1)
 
 
-class CLASSIFY(nn.Module):
-    def __init__(self, num_classes: int):
-        super().__init__()
-        # Load pretrained ResNet50
-        self.backbone = resnet50(weights="IMAGENET1K_V1")
+def CLASSIFY(num_classes=18):
+    model = models.resnet50(weights=models.ResNet50_Weights.IMAGENET1K_V1)
 
-        # Freeze early layers (layer1 and layer2)
-        for name, param in self.backbone.named_parameters():
-            if name.startswith("layer1") or name.startswith("layer2"):
-                param.requires_grad = False
+    # Freeze layers 1 & 2, train layers 3 & 4 + head
+    for param in model.parameters():
+        param.requires_grad = False
 
-        # Replace the classification head
-        in_features = self.backbone.fc.in_features
-        self.backbone.fc = nn.Sequential(
-            nn.Linear(in_features, 1024),
-            nn.BatchNorm1d(1024),
-            nn.ReLU(inplace=True),
-            nn.Dropout(0.4),
-            nn.Linear(1024, 512),
-            nn.ReLU(inplace=True),
-            nn.Dropout(0.3),
-            nn.Linear(512, num_classes)
-        )
+    # Improved classification head
+    in_features = model.fc.in_features
+    model.fc = nn.Sequential(
+        nn.Linear(in_features, 1024),
+        nn.BatchNorm1d(1024),
+        nn.ReLU(inplace=True),
+        nn.Dropout(0.4),
+        nn.Linear(1024, 512),
+        nn.ReLU(inplace=True),
+        nn.Dropout(0.3),
+        nn.Linear(512, num_classes)
+    )
 
-    def forward(self, x):
-        return self.backbone(x)
+    return model

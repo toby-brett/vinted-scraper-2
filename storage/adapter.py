@@ -1,6 +1,7 @@
 import numpy as np
 from datetime import datetime
 
+import logging
 from domain.models import Listing
 from storage.listings import fetch_image_array
 from storage.schema import metadata_dtype
@@ -36,7 +37,8 @@ def listings_to_batches(listings):
             img, meta = listing_to_record(listing)
             images.append(img)
             metadata.append(meta)
-        except Exception:
+        except Exception as e:
+            logging.error(f"Failed to convert listing to batches: {e}")
             # drop bad records do not poison batch
             continue
 

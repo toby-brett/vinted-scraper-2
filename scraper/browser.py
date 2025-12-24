@@ -4,13 +4,10 @@ import random
 from bs4 import BeautifulSoup
 from playwright.sync_api import sync_playwright
 from playwright_stealth import stealth_sync
+import asyncio
 import logging
 
 from utils.utils import *
-
-logging.basicConfig(level=logging.INFO)
-logger = logging.getLogger(__name__)
-
 
 def random_user_agent():
     agents = [
@@ -22,11 +19,26 @@ def random_user_agent():
 
 class BrowserSession:
     def __init__(self):
-        """Starts the browser session, loads context and page"""
+        self.instance = None
+        self.browser = None
+        self.context = None
+        self.page = None
 
-        # proxy_str = f"http://{proxy_user}:{proxy_pass}@{proxy_ip}:{proxy_port}"
+    def __enter__(self):
+        """So can us with BrowserSession() as session
+        Starts the browser session, loads context and page"""
 
-        self.instance = sync_playwright().start()                               # playwright instance, manages playwright session
+        logging.info("Checking for asyncio loop...")
+        try:
+            loop = asyncio.get_event_loop()
+            if loop.is_running():
+                logging.warning("A loop is already running")
+            else:
+                logging.warning("A loop exists but is not running")
+        except Exception as e:
+            logging.info(f"No loop detected: {e}")
+
+        self.instance = sync_playwright().start()  # playwright instance, manages playwright session
         self.browser = self.instance.chromium.launch(
             headless=True,  # HEADLESS = HIGH DETECTION on Vinted; keep it visible
             slow_mo=50,
@@ -40,7 +52,7 @@ class BrowserSession:
                 "--ignore-certificate-errors",
             ],
         )
-        self.context = self.browser.new_context(                                # separate browser profile
+        self.context = self.browser.new_context(  # separate browser profile
             user_agent=random_user_agent(),
             locale="en-GB",
             timezone_id="Europe/London",
@@ -49,11 +61,9 @@ class BrowserSession:
             java_script_enabled=True,
         )
 
-        self.page = self.context.new_page()                                     # single browser tab
+        self.page = self.context.new_page()  # single browser tab
         stealth_sync(self.page)
 
-    def __enter__(self):
-        """So can us with BrowserSession() as session"""
         return self
 
     def fetch_html(self, url):

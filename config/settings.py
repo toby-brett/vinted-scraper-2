@@ -1,5 +1,6 @@
 ROOT_DATA = '/mnt/volume100/data/'
 ROOT_ID = '/home/opc/vinted-scraper-2/ids/'
+ROOT_MODELS = '/home/opc/vinted-scraper-2/models/'
 
 # telegram
 BOT_TOKEN = "7883319571:AAFmWkHKXKt6UkYlUqT6DSrNsXy2gk0jhzg"

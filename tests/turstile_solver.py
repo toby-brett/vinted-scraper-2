@@ -1,8 +1,15 @@
-# pip install zenrows
-from scraper.browser import *
+import asyncio
+import sys
 
-with BrowserSession() as session:
-    url = "https://www.vinted.co.uk/catalog?search_text=tshirt"
-    soup = session.fetch_html(url)
-    if soup:
-        print(soup.prettify()[2000])  # first 1000 chars
+def debug_loop():
+    try:
+        loop = asyncio.get_running_loop()
+        print(f"--- ACTIVE LOOP DETECTED ---")
+        print(f"Loop: {loop}")
+        # This will show you the stack trace of what started the loop
+        import traceback
+        traceback.print_stack()
+    except RuntimeError:
+        print("--- No active asyncio loop detected ---")
+
+debug_loop()
