@@ -1,6 +1,11 @@
 from dataclasses import dataclass
-from typing import Optional
+from typing import Optional, List
 from datetime import datetime
+import torch
+
+from scraper import browser
+from storage import storer
+
 
 @dataclass(frozen=True)
 class Listing:
@@ -33,3 +38,32 @@ class Decision:
     profit: float
     threshold_used: float
     decided_at: datetime = datetime.now()
+
+@dataclass(frozen=True)
+class TickResult:
+    """Represents the outcome of a single tick"""
+    new: int
+    stored: int
+    return_status: str
+    error: Optional[str] = None
+    warnings: List[str] = None
+
+@dataclass(frozen=True)
+class JobObject:
+    search: str
+    brand: str
+    task: str
+    model_type: str
+    id_path: str
+    price_threshold: float
+    model: torch.nn.Module
+    population_metrics: str
+    value_dict: dict
+    data_storer: storer.HDF5Storer
+
+@dataclass()
+class JobRuntime:
+    job: JobObject
+    session: browser.BrowserSession
+    seen_ids: set
+    data_storer: storer.HDF5Storer

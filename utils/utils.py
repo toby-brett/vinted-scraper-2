@@ -1,3 +1,4 @@
+import json
 import os
 
 import random
@@ -6,6 +7,10 @@ from pathlib import Path
 import logging
 
 import config.settings as settings
+from domain.models import JobObject
+from storage.storer import HDF5Storer
+from vision.evaluator import load_model
+
 
 def load_ids(url):
     """
@@ -84,3 +89,25 @@ def parse_job(job):
 class FatalScraperError(RuntimeError):
     """Unrecoverable error – scraper must stop."""
     pass
+
+def load_job(job_file) -> JobObject:
+
+    with open(job_file, "r") as f:
+        job = json.load(f)
+
+    search, brand, item, task, id_path, data_path, price_threshold, model_path, model_type, num_classes, population_metrics, value_dict = parse_job(job)
+
+    job_obj = JobObject(
+        search=search,
+        brand=brand,
+        task=task,
+        model_type=model_type,
+        id_path=id_path,
+        price_threshold=price_threshold,
+        model=load_model(model_path, model_type=model_type),
+        population_metrics=population_metrics,
+        value_dict=value_dict,
+        data_storer=HDF5Storer(data_path)
+    )
+
+    return job_obj
