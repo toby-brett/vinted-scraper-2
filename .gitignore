@@ -6,3 +6,19 @@ __pycache__/
 
 storage/*.h5
 
+# macOS
+.DS_Store
+._*
+
+# IDE
+.idea/
+
+# Runtime
+logs/
+cookies.txt
+jobs.json
+
+# Python
+__pycache__/
+*.pyc
+

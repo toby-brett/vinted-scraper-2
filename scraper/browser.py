@@ -7,7 +7,8 @@ from playwright_stealth import stealth_sync
 import asyncio
 import logging
 
-from utils.utils import *
+class BlockedError(RuntimeError):
+    pass
 
 def random_user_agent():
     agents = [
@@ -36,7 +37,7 @@ class BrowserSession:
             else:
                 logging.warning("A loop exists but is not running")
         except Exception as e:
-            logging.info(f"No loop detected: {e}")
+            logging.exception(f"No loop detected: {e}")
 
         self.instance = sync_playwright().start()  # playwright instance, manages playwright session
         self.browser = self.instance.chromium.launch(
@@ -73,12 +74,8 @@ class BrowserSession:
             # If Cloudflare challenge appears, wait it out
             if "Just a moment" in self.page.title():
                 logging.info("Cloudflare challenge detected, waiting...")
-
-                # Wait until challenge iframe disappears OR URL changes
-                self.page.wait_for_function(
-                    "() => !document.querySelector('iframe[src*=\"challenges.cloudflare.com\"]')",
-                    timeout=60000
-                )
+                self.page = self.context.new_page()
+                raise BlockedError("Cloudflare challenge detected")
 
             # Wait for actual Vinted content
             self.page.wait_for_selector(
@@ -86,17 +83,19 @@ class BrowserSession:
                 timeout=30000
             )
 
+
             html = self.page.content()
             return BeautifulSoup(html, "lxml")
 
         except Exception as e:
-            logging.error(f"Unhandled exception when fetching html {e}")
+            logging.exception(f"Unhandled exception when fetching html {e}")
             return None
 
     def reset_page(self):
         if self.page:
             self.page.close()
         self.page = self.browser.new_page()
+        stealth_sync(self.page)
 
     def __exit__(self, exc_type, exc_val, exc_tb):
         self.page.close()

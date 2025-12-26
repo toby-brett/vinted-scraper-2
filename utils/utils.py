@@ -5,7 +5,7 @@ import pickle
 from pathlib import Path
 import logging
 
-from config.settings import *
+import config.settings as settings
 
 def load_ids(url):
     """
@@ -23,7 +23,7 @@ def load_ids(url):
         with path.open('rb') as f:
             return set(pickle.load(f))
     except (pickle.UnpicklingError, EOFError) as e:
-        logging.error("Failed to load ID file: %s", path, exc_info=e)
+        logging.exception("Failed to load ID file: %s", path, exc_info=e)
         return set()
 
 
@@ -45,7 +45,7 @@ def add_ids(url, new_ids):
         else:
             ids = set()
     except pickle.UnpicklingError as e:
-        logging.error("Failed to load ID file: %s", path, exc_info=e)
+        logging.exception("Failed to load ID file: %s", path, exc_info=e)
         ids = set()
 
     ids.update(new_ids)
@@ -70,13 +70,13 @@ def parse_job(job):
     population_metrics = job["population_metrics"]
     value_dict = job["value_dict"]
 
-    data_path = ROOT_DATA + get_file_starter(brand, item) + '.h5'
-    id_path = ROOT_ID + get_file_starter(brand, item) + '.pkl'
+    data_path = settings.ROOT_DATA + get_file_starter(brand, item) + '.h5'
+    id_path = settings.ROOT_ID + get_file_starter(brand, item) + '.pkl'
 
     search = brand + '%20' + item
 
     if task == "silent":
-        return search, brand, item, task, id_path, data_path, None, None, None, None, None
+        return search, brand, item, task, id_path, data_path, None, None, None, None, None, None
 
     elif task == "alert":
         return search, brand, item, task, id_path, data_path, price_threshold, model_path, model_type, num_classes, population_metrics, value_dict

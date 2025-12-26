@@ -1,9 +1,9 @@
 from scraper.orchestrator import *
 from storage.adapter import *
-from storage.listings import *
+from storage.storer import *
 from scraper.cleaner import *
 from utils.utils import *
-from vision.evaluater import *
+from vision.evaluator import *
 from alerts.alert import *
 
 with open("tests/page_1.html", "r", encoding="utf-8") as f:

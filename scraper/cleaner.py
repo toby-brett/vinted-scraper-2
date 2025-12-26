@@ -1,8 +1,7 @@
 import unicodedata
 
 from typing import List
-from domain.models import *
-
+import domain.models as models
 def check_id(id: str, ids):
     """
     Checks if id is in a list of ids
@@ -34,7 +33,7 @@ def check_brand(brand_check: str, brand_target: str):
 
 
 
-def filter_listings(listings: List[Listing], ids, brand):
+def filter_listings(listings: List[models.Listing], ids, brand):
     """
     Filters Listings to ensure they are the right brand, and have not been seen before
     :param listings: listing to check

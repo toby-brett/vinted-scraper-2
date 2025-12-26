@@ -1,11 +1,11 @@
 from typing import List
 import logging
 
-from domain.models import *
-from scraper.parser import Parser
-from scraper.browser import *
+import domain.models as models
+import scraper.parser as parser
+import scraper.browser as browser
 
-def scrape_listings(urls: List[str], SESSION: BrowserSession, tries: int) -> (List[Listing], int):
+def scrape_listings(urls: List[str], SESSION: browser.BrowserSession, tries: int) -> (List[models.Listing], int):
     """Takes a list of search URLs, and returns a list of
     all the listing objects found on that page"""
     listings = []
@@ -15,25 +15,25 @@ def scrape_listings(urls: List[str], SESSION: BrowserSession, tries: int) -> (Li
             try:
                 page_soup = SESSION.fetch_html(url)
             except Exception as e:
-                logging.error(f"Failed to fetch {url}: {e}")
+                logging.exception(f"Failed to fetch {url}: {e}")
                 continue            # skips to next page
             try:
-                page_listings = Parser.parse_page(page_soup)
+                page_listings = parser.Parser.parse_page(page_soup)
             except Exception as e:
-                logging.error(f"Failed to parse {url}: {e}")
+                logging.exception(f"Failed to parse {url}: {e}")
                 continue            # skips to next page
             for listing_soup in page_listings:
                 try:
-                    listing = Parser.parse_listing(listing_soup)
+                    listing = parser.Parser.parse_listing(listing_soup)
                     if listing:     # final check for None
                         listings.append(listing)
                 except Exception as e:
-                    logging.warning(f"Failed to parse {listing_soup}: {e}")
+                    logging.exception(f"Failed to parse {url}: {e}")
                     continue        # skips to next listing
 
     except Exception as e:
-        logging.warning(f"Scraping page failed, starting new session and retrying {e}")
-        return Listing, tries + 1
+        logging.exception(f"Scraping page failed, starting new session and retrying {e}")
+        return None, tries + 1
 
     return listings, tries
 

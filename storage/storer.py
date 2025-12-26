@@ -1,14 +1,9 @@
-import os
-
-from typing import List
 import h5py
 import numpy as np
 from PIL import Image
 import requests
 from io import BytesIO
 import logging
-
-from domain.models import *
 
 metadata_dtype = np.dtype([
     ('item_id', 'S20'),

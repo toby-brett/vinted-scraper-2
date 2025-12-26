@@ -20,7 +20,7 @@ def preprocess(numpy_array: np.ndarray, size=256) -> torch.Tensor:
         tensor = resnet_transform(numpy_array)
 
     except Exception as e:
-        logging.error(f"Failed to convert numpy array to tensor: {e}")
+        logging.exception(f"Failed to convert numpy array to tensor: {e}")
         raise e
 
     return tensor.unsqueeze(0)

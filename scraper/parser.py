@@ -1,9 +1,10 @@
 import time
+import datetime
 
 from typing import List
 import logging
 
-from domain.models import *
+import domain.models as models
 
 class Parser:
     @staticmethod
@@ -18,7 +19,7 @@ class Parser:
         return product_listings                   # list of html listings
 
     @staticmethod
-    def parse_listing(listing_soup) -> Listing:
+    def parse_listing(listing_soup) -> models.Listing:
         """Parses each listing, returning item_id, title, price, image_src, size, brand, condition, url and time"""
         try:
             brand = condition = size = None
@@ -47,8 +48,8 @@ class Parser:
             url = link_tag.get("href")
             item_id = link_tag.get("href").split("/")[4][:10]
 
-            return Listing(item_id, title, price, image_src, size, brand, condition, url, datetime.utcnow())
+            return models.Listing(item_id, title, price, image_src, size, brand, condition, url, datetime.datetime.now())
 
         except Exception as e:
-            logging.log(f"Failed to generate listing due to exception {e}")
+            logging.exception(f"Failed to generate listing due to exception {e}")
             return None
