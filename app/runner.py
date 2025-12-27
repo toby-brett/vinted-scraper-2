@@ -11,7 +11,7 @@ import vision.evaluator as evaluator
 import alerts.alert as alert
 from domain.models import TickResult, JobObject, JobRuntime
 from scraper.browser import BlockedError
-
+import config.settings as settings
 
 def tick(runtime: JobRuntime) -> TickResult:
     """
@@ -30,8 +30,8 @@ def tick(runtime: JobRuntime) -> TickResult:
         listings, tries = orchestrator.scrape_listings([url], runtime.session, 0)
         logging.info(f"Scraped listings")
     except BlockedError as e:
-        logging.exception(f"Cloudflare blocked: {e}")
-        return TickResult(new=0, stored=0, return_status="blocked", error=str(e), warnings=warnings)
+        logging.exception(f"Cloudflare blocked: {e}: Triggering IP fallover")
+        raise SystemExit(settings.BLOCKED_EXIT_CODE)
     except Exception as e:
         logging.exception(f"Error when scraping listings: {e}")
         return TickResult(new=0, stored=0, return_status="error", error=str(e), warnings=warnings)
@@ -83,7 +83,7 @@ def tick(runtime: JobRuntime) -> TickResult:
 
         try:
             runtime.data_storer.append_batch(image_batch, metadata_batch)
-            logging.info(f"Saved batches, added {len(image_batch)}, currently holding {len(runtime.data_storer)} files")
+            logging.info(f"Saved batches, added {len(image_batch)}, currently holding {runtime.data_storer.len_images()} images, {runtime.data_storer.len_meta()} labels")
         except Exception as e:
             logging.exception(f"Failed to save batched: {e}")
             return TickResult(new=len(listings_filtered), stored=0, return_status="error", error=str(e), warnings=warnings)

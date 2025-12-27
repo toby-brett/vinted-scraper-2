@@ -49,6 +49,16 @@ class HDF5Storer:
             img_ds = f['images']
             return img_ds.shape[0]
 
+
+    def len_images(self):
+        with h5py.File(self.filepath, 'r') as f:
+            img_ds = f['images']
+            return img_ds.shape[0]
+
+    def len_meta(self):
+        with h5py.File(self.filepath, 'r') as f:
+            img_ds = f['metadata']
+            return img_ds.shape[0]
     def append_batch(self, image_batch, metadata_batch):
         """
         Append a batch of images and corresponding metadata
@@ -61,14 +71,19 @@ class HDF5Storer:
                 img_ds = f['images']
                 old_size = img_ds.shape[0]
                 new_size = old_size + image_batch.shape[0]
-                img_ds.resize(new_size, axis=0)
-                img_ds[old_size:new_size] = image_batch
 
                 meta_ds = f['metadata']
                 old_size_meta = meta_ds.shape[0]
                 new_size_meta = old_size_meta + metadata_batch.shape[0]
-                meta_ds.resize(new_size_meta, axis=0)
-                meta_ds[old_size_meta:new_size_meta] = metadata_batch
+
+                if new_size == new_size_meta:
+                    img_ds.resize(new_size, axis=0)
+                    img_ds[old_size:new_size] = image_batch
+                    meta_ds.resize(new_size_meta, axis=0)
+                    meta_ds[old_size_meta:new_size_meta] = metadata_batch
+                else:
+                    logging.exception(f"Metadata and image sizes DO NOT MATCH, threw batch")
+
             except Exception as e:
                 logging.exception(f"Cannot merge data: {e}")
 
@@ -76,6 +91,9 @@ class HDF5Storer:
                 logging.info(f"New item found: {meta[6]}")
 
             f.flush()
+
+
+
 
 def fetch_image_array(url: str, size=(500, 500)) -> np.ndarray:
     response = requests.get(url, timeout=10)

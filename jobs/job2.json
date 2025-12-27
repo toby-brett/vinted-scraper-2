@@ -1,0 +1,12 @@
+{
+    "brand": "stussy",
+    "item": "hoodie",
+    "pages": 1,
+    "task": "alert",
+    "model_type": "regression",
+    "model_path": "regression/stussy_hoodie.pth",
+    "price_threshold": "10",
+    "num_classes": "",
+    "population_metrics": "37.97641181379822 19.02141953014247",
+    "value_dict": ""
+}

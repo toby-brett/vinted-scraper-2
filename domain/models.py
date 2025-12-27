@@ -40,6 +40,19 @@ class Decision:
     decided_at: datetime = datetime.now()
 
 @dataclass(frozen=True)
+class JobObject:
+    search: str
+    brand: str
+    task: str
+    model_type: Optional[str]
+    id_path: str
+    price_threshold: Optional[float]
+    model: Optional[torch.nn.Module]
+    population_metrics: Optional[str]
+    value_dict: Optional[dict]
+    data_storer: storer.HDF5Storer
+
+@dataclass(frozen=True)
 class TickResult:
     """Represents the outcome of a single tick"""
     new: int
@@ -47,19 +60,6 @@ class TickResult:
     return_status: str
     error: Optional[str] = None
     warnings: List[str] = None
-
-@dataclass(frozen=True)
-class JobObject:
-    search: str
-    brand: str
-    task: str
-    model_type: str
-    id_path: str
-    price_threshold: float
-    model: torch.nn.Module
-    population_metrics: str
-    value_dict: dict
-    data_storer: storer.HDF5Storer
 
 @dataclass()
 class JobRuntime:

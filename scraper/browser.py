@@ -83,7 +83,6 @@ class BrowserSession:
                 timeout=30000
             )
 
-
             html = self.page.content()
             return BeautifulSoup(html, "lxml")
 

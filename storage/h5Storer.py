@@ -49,10 +49,11 @@ class HDF5Storer:
                 compression="gzip"
             )
 
-    def __len__(self):
+
+    def len_labels(self):
         with h5py.File(self.filepath, 'r') as f:
-            img_ds = f['images']
-            return img_ds.shape[0]
+            meta_ds = f['metadata']
+            return meta_ds.shape[0]
 
     def append_batch(self, image_batch, metadata_batch):
         """

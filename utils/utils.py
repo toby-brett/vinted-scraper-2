@@ -5,6 +5,7 @@ import random
 import pickle
 from pathlib import Path
 import logging
+from typing import List
 
 import config.settings as settings
 from domain.models import JobObject
@@ -97,17 +98,44 @@ def load_job(job_file) -> JobObject:
 
     search, brand, item, task, id_path, data_path, price_threshold, model_path, model_type, num_classes, population_metrics, value_dict = parse_job(job)
 
-    job_obj = JobObject(
-        search=search,
-        brand=brand,
-        task=task,
-        model_type=model_type,
-        id_path=id_path,
-        price_threshold=price_threshold,
-        model=load_model(model_path, model_type=model_type),
-        population_metrics=population_metrics,
-        value_dict=value_dict,
-        data_storer=HDF5Storer(data_path)
-    )
+    if task == "alert":
+        job_obj = JobObject(
+            search=search,
+            brand=brand,
+            task=task,
+            model_type=model_type,
+            id_path=id_path,
+            price_threshold=price_threshold,
+            model=load_model(model_path, model_type=model_type),
+            population_metrics=population_metrics,
+            value_dict=value_dict,
+            data_storer=HDF5Storer(data_path)
+        )
+    elif task == "silent":
+        job_obj = JobObject(
+            search=search,
+            brand=brand,
+            task=task,
+            model_type=None,
+            id_path=id_path,
+            price_threshold=None,
+            model=None,
+            population_metrics=None,
+            value_dict=None,
+            data_storer=HDF5Storer(data_path)
+        )
 
     return job_obj
+
+def load_jobs(job_folder) -> List[JobObject]:
+
+    jobs: List[JobObject] = []
+
+    for filename in sorted(os.listdir(job_folder)):
+        path = os.path.join(job_folder, filename)
+
+        if filename.lower().endswith(".json"):
+            job = load_job(path)
+            jobs.append(job)
+
+    return jobs

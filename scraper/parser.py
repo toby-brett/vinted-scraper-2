@@ -10,13 +10,19 @@ class Parser:
     @staticmethod
     def parse_page(page_soup) -> List[str]:
         """Parses the webpage for all the vinted listings, avoiding advertisements"""
+
+        if page_soup is None:
+            raise ValueError("parse_page received None (fetch likely failed or was blocked).")
+
         listings = page_soup.find_all("div", {"class": "feed-grid__item"})
-        # filter out non-product items
         product_listings = [
             listing for listing in listings
             if listing.find("div", {"class": "new-item-box__container"})
         ]
-        return product_listings                   # list of html listings
+        return product_listings
+
+
+
 
     @staticmethod
     def parse_listing(listing_soup) -> models.Listing:
