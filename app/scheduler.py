@@ -51,14 +51,9 @@ def setup_logging(job_name: str, log_dir: str = "logs") -> None:
 
 
 def main():
-    parser = argparse.ArgumentParser()
-    parser.add_argument(
-        '--jobs',
-        required=True,
-        help="Path to json folder"
-    )
-    args = parser.parse_args()
-    jobs = utils.load_jobs(args.jobs)
+
+    jobs_path = settings.ROOT_JOBS
+    jobs = utils.load_jobs(jobs_path)
 
     while True:
         with BrowserSession() as session:

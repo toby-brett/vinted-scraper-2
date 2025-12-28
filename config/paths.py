@@ -14,7 +14,7 @@ def models_dir() -> Path:
 
 def ensure_runtime_dirs() -> None:
     sd = state_dir()
-    for sub in ("data", "ids", "logs"):
+    for sub in ("data", "ids", "logs", "jobs"):
         (sd / sub).mkdir(parents=True, exist_ok=True)
     models_dir().mkdir(parents=True, exist_ok=True)
 
