@@ -1,6 +1,10 @@
-ROOT_DATA = '/mnt/volume100/data/'
-ROOT_ID = '/home/opc/vinted-scraper-2/ids/'
-ROOT_MODELS = '/home/opc/vinted-scraper-2/models/'
+from pathlib import Path
+
+from config.paths import resolve_under_state, resolve_under_models
+
+ROOT_DATA = Path(resolve_under_state("data"))
+ROOT_ID = Path(resolve_under_state("ids"))
+ROOT_MODELS = Path(resolve_under_state("models"))
 
 # telegram
 BOT_TOKEN = "7883319571:AAFmWkHKXKt6UkYlUqT6DSrNsXy2gk0jhzg"

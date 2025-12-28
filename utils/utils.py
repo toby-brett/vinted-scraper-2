@@ -76,8 +76,9 @@ def parse_job(job):
     population_metrics = job["population_metrics"]
     value_dict = job["value_dict"]
 
-    data_path = settings.ROOT_DATA + get_file_starter(brand, item) + '.h5'
-    id_path = settings.ROOT_ID + get_file_starter(brand, item) + '.pkl'
+    data_path = settings.ROOT_DATA / f"{get_file_starter(brand, item)}.h5"
+    id_path = settings.ROOT_ID / f"{get_file_starter(brand, item)}.pkl"
+    model_path = settings.ROOT_MODELS / model_path
 
     search = brand + '%20' + item
 

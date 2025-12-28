@@ -75,7 +75,7 @@ class BrowserSession:
             if "Just a moment" in self.page.title():
                 logging.info("Cloudflare challenge detected, waiting...")
                 self.page = self.context.new_page()
-                raise BlockedError("Cloudflare challenge detected")
+                raise TimeoutError("Cloudflare challenge detected")
 
             # Wait for actual Vinted content
             self.page.wait_for_selector(
@@ -88,7 +88,8 @@ class BrowserSession:
 
         except Exception as e:
             logging.exception(f"Unhandled exception when fetching html {e}")
-            return None
+            logging.error("TimeoutError propagated")
+            raise TimeoutError
 
     def reset_page(self):
         if self.page:

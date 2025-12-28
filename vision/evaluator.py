@@ -103,7 +103,6 @@ def evaluate_class(listings: List[models.Listing], model: torch.nn.Module, value
 def load_model(path, model_type, device="cpu"):
     """Loads a trained model for evaluation, handling DataParallel checkpoints."""
 
-    path = settings.ROOT_MODELS + path
     # Initialize model
     if model_type == 'regression':
         model = ML_models.REGRESSOR()

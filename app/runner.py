@@ -29,12 +29,9 @@ def tick(runtime: JobRuntime) -> TickResult:
     try:
         listings, tries = orchestrator.scrape_listings([url], runtime.session, 0)
         logging.info(f"Scraped listings")
-    except BlockedError as e:
-        logging.exception(f"Cloudflare blocked: {e}: Triggering IP fallover")
+    except TimeoutError as e:
+        logging.exception(f"Cloudflare blocked: {e}")
         raise SystemExit(settings.BLOCKED_EXIT_CODE)
-    except Exception as e:
-        logging.exception(f"Error when scraping listings: {e}")
-        return TickResult(new=0, stored=0, return_status="error", error=str(e), warnings=warnings)
 
     try:
         listings_filtered = cleaner.filter_listings(listings, runtime.seen_ids, job.brand)

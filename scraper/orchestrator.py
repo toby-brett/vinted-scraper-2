@@ -13,9 +13,10 @@ def scrape_listings(urls: List[str], SESSION: browser.BrowserSession, tries: int
     for url in urls:
         try:
             page_soup = SESSION.fetch_html(url)
-        except Exception as e:
+        except TimeoutError as e:
             logging.exception(f"Failed to fetch {url}: {e}")
-            continue            # skips to next page
+            logging.error("TimeoutError propagated")
+            raise TimeoutError            # loud
         try:
             page_listings = parser.Parser.parse_page(page_soup)
         except Exception as e:

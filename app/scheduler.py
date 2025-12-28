@@ -12,6 +12,7 @@ import utils.utils as utils
 
 import argparse
 import logging
+
 import os
 from datetime import datetime
 
@@ -52,7 +53,7 @@ def setup_logging(job_name: str, log_dir: str = "logs") -> None:
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument(
-        '--jobs_opc',
+        '--jobs',
         required=True,
         help="Path to json folder"
     )
@@ -83,10 +84,6 @@ def main():
                     setup_logging(getattr(runtime.job, "name", runtime.job.search))
 
                     tick_result = runner.tick(runtime)
-                    if tick_result is None: # CLOUDFARE BLOCKING
-                        logging.fatal("Cloudflare blocked - sleeping for 1 hour and resetting browser")
-                        time.sleep(60 * 60)
-                        break
 
                     logging.info(f"[{runtime.job.search}] Ticks completed: {tick_result}")
                     logging.info(f"[{runtime.job.search}] Tick warnings: {tick_result.warnings}")
