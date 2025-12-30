@@ -2,7 +2,6 @@ import argparse
 import random
 import time
 
-import logging
 
 from app import runner
 from config import settings
@@ -19,12 +18,12 @@ from datetime import datetime
 
 def setup_logging(job_name: str, log_dir: str = "logs") -> None:
 
-    os.makedirs(log_dir, exist_ok=True)
+    os.makedirs(settings.ROOT_LOGS, exist_ok=True)
 
     # Safe filename
     safe = "".join(c if c.isalnum() or c in ("-", "_") else "_" for c in job_name).strip("_")
     ts = datetime.utcnow().strftime("%Y%m%d")
-    log_path = os.path.join(log_dir, f"{safe}_{ts}.log")
+    log_path = os.path.join(settings.ROOT_LOGS, f"{safe}_{ts}.log")
 
     root = logging.getLogger()
     root.setLevel(logging.INFO)
@@ -76,7 +75,7 @@ def main():
 
                 for runtime in runtimes:
 
-                    setup_logging(getattr(runtime.job, "name", runtime.job.search))
+                    setup_logging(getattr(runtime.job, "name", runtime.job.search), log_dir=job.id_path)
 
                     tick_result = runner.tick(runtime)
 

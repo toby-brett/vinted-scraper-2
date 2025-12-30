@@ -68,28 +68,25 @@ class BrowserSession:
         return self
 
     def fetch_html(self, url):
+        self.page.goto(url, timeout=60000, wait_until="load")
+        # If Cloudflare challenge appears, wait it out
+        if "Just a moment" in self.page.title():
+            logging.info("Cloudflare challenge detected, waiting...")
+            self.page = self.context.new_page()
+            raise BlockedError("Cloudflare challenge detected")
+
         try:
-            self.page.goto(url, timeout=60000, wait_until="load")
-
-            # If Cloudflare challenge appears, wait it out
-            if "Just a moment" in self.page.title():
-                logging.info("Cloudflare challenge detected, waiting...")
-                self.page = self.context.new_page()
-                raise TimeoutError("Cloudflare challenge detected")
-
             # Wait for actual Vinted content
             self.page.wait_for_selector(
                 "div.feed-grid__item",
                 timeout=30000
             )
-
             html = self.page.content()
-            return BeautifulSoup(html, "lxml")
-
         except Exception as e:
-            logging.exception(f"Unhandled exception when fetching html {e}")
-            logging.error("TimeoutError propagated")
+            logging.exception(f"Failed to load page: {e}")
             raise TimeoutError
+
+        return BeautifulSoup(html, "lxml")
 
     def reset_page(self):
         if self.page:

@@ -2,6 +2,8 @@ import time
 
 import torch.nn
 import logging
+import signal
+import threading
 
 import scraper.orchestrator as orchestrator
 import storage.adapter as adapter
@@ -12,6 +14,15 @@ import alerts.alert as alert
 from domain.models import TickResult, JobObject, JobRuntime
 from scraper.browser import BlockedError
 import config.settings as settings
+
+shutdown_event = threading.Event()
+
+def _handle_shutdown(signum, frame):
+    logging.info(f"Received signal {signum}. Initiating shutdown.")
+    shutdown_event.set()
+
+signal.signal(signal.SIGTERM, _handle_shutdown)
+signal.signal(signal.SIGINT, _handle_shutdown)
 
 def tick(runtime: JobRuntime) -> TickResult:
     """
@@ -30,7 +41,18 @@ def tick(runtime: JobRuntime) -> TickResult:
         listings, tries = orchestrator.scrape_listings([url], runtime.session, 0)
         logging.info(f"Scraped listings")
     except TimeoutError as e:
-        logging.exception(f"Cloudflare blocked: {e}")
+        logging.exception(f"Timeout: {e}")
+        raise SystemExit(settings.TIMEOUT_EXIT_CODE)
+    except BlockedError as e:
+        logging.exception(f"Blocked: {e}")
+        logging.info("Waiting an hour and a half, and then retrying")
+        wait_seconds = int(60 * 60 * 1.5)
+        for _ in range(wait_seconds):
+            if shutdown_event.is_set():
+                logging.info("Shutdown requested during backoff sleep.")
+                raise SystemExit(settings.BLOCKED_EXIT_CODE)
+            time.sleep(1)
+        logging.info("wait over")
         raise SystemExit(settings.BLOCKED_EXIT_CODE)
 
     try:
@@ -44,7 +66,6 @@ def tick(runtime: JobRuntime) -> TickResult:
         new_ids = cleaner.get_ids_from_listings(listings_filtered)
         logging.info("ID's found")
     except Exception as e:
-        logging.exception(f"Failed to load IDs from new listings: {e}")
         return TickResult(new=len(listings_filtered), stored=0, return_status="error", error="Failed to get ids", warnings=warnings)
 
     if len(listings_filtered) > 0:
