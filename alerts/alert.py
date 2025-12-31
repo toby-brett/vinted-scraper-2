@@ -39,7 +39,7 @@ def alert(listings_evaluated: List[models.EvaluatedListing], price_threshold: fl
         value = listing.predicted_value
         price = listing.listing.price
         profit = float(value - (price + settings.EXPENSES))
-        logging.info(f"Listing: {listing.listing.title} evaluated. Price: {price}, Value: {value}, Profit: {profit}")
+        logging.info(f"Listing: {listing.listing.url} evaluated. Price: {price}, Value: {value}, Profit: {profit}")
 
         if profit > float(price_threshold):
             send_telegram(price, listing.listing.title, listing.listing.url, value)
