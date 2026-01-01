@@ -51,6 +51,7 @@ class JobObject:
     population_metrics: Optional[str]
     value_dict: Optional[dict]
     data_storer: storer.HDF5Storer
+    max_price: Optional[float]
 
 @dataclass(frozen=True)
 class TickResult:

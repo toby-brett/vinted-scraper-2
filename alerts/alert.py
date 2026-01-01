@@ -27,9 +27,10 @@ def send_telegram(price: float, title: str, link: str, value: float) -> None:
     except Exception as e:
         logging.exception(f"Failed to send alert to telegram: {e}")
 
-def alert(listings_evaluated: List[models.EvaluatedListing], price_threshold: float) -> None:
+def alert(listings_evaluated: List[models.EvaluatedListing], price_threshold: float, max_price: float) -> None:
     """
     Takes a list of evaluated listings, and filters them to alert based on business logic
+    :param max_price: the maximum price a listing can be and still trigger an alert
     :param listings_evaluated: a list of listings, of the structure model.EvaluatedListing
     :param price_threshold: float, the predetermined threshold of profit at which an alert should be sent
     :return: None
@@ -39,8 +40,10 @@ def alert(listings_evaluated: List[models.EvaluatedListing], price_threshold: fl
         value = listing.predicted_value
         price = listing.listing.price
         profit = float(value - (price + settings.EXPENSES))
-        logging.info(f"Listing: {listing.listing.url} evaluated. Price: {price}, Value: {value}, Profit: {profit}")
+        profit_threshold = price * float(price_threshold)
 
-        logging.info(f"IMPORTANT: {price}, {price_threshold}, {price * float(price_threshold)}, {profit}")
-        if profit > price * float(price_threshold):
+        logging.info(f"Listing: {listing.listing.url} evaluated. Price: {price}, Value: {value}, Profit: {profit}")
+        logging.info(f"Profit threshold: {profit_threshold}, max price: {max_price}")
+
+        if profit > profit_threshold and price <= max_price:
             send_telegram(price, listing.listing.title, listing.listing.url, value)
