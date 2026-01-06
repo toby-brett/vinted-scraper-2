@@ -4,6 +4,8 @@ from typing import List
 
 import domain.models as models
 import config.settings as settings
+from domain.models import EvaluatedListing
+
 
 def send_telegram(price: float, title: str, link: str, value: float) -> None:
     """
@@ -27,9 +29,10 @@ def send_telegram(price: float, title: str, link: str, value: float) -> None:
     except Exception as e:
         logging.exception(f"Failed to send alert to telegram: {e}")
 
-def alert(listings_evaluated: List[models.EvaluatedListing], price_threshold: float, max_price: float) -> None:
+def alert(listings_evaluated: List[models.EvaluatedListing], price_threshold: float, max_price: float, min_condition: str) -> None:
     """
     Takes a list of evaluated listings, and filters them to alert based on business logic
+    :param min_condition: worst condition allowed
     :param max_price: the maximum price a listing can be and still trigger an alert
     :param listings_evaluated: a list of listings, of the structure model.EvaluatedListing
     :param price_threshold: float, the predetermined threshold of profit at which an alert should be sent
@@ -37,13 +40,34 @@ def alert(listings_evaluated: List[models.EvaluatedListing], price_threshold: fl
     """
     for listing in listings_evaluated:
 
-        value = listing.predicted_value
         price = listing.listing.price
-        profit = float(value - (price + settings.EXPENSES))
-        profit_threshold = price * float(price_threshold)
+        value = listing.predicted_value
 
-        logging.info(f"Listing: {listing.listing.url} evaluated. Price: {price}, Value: {value}, Profit: {profit}")
-        logging.info(f"Profit threshold: {profit_threshold}, max price: {max_price}")
-
-        if profit > profit_threshold and price <= max_price:
+        logging.info("Checking listing meets requirements")
+        if requirements(price_threshold, min_condition, max_price, listing):
             send_telegram(price, listing.listing.title, listing.listing.url, value)
+
+def requirements(min_returns: float, min_condition: str, max_price: float, evaluated_listing: EvaluatedListing):
+    """
+    Checks that some base requirements are met
+    :param evaluated_listing: the listing
+    :param min_returns: least return acceptable to trigger an alert
+    :param min_condition: worst condition to trigger alert
+    :param max_price: highest price to trigger alert
+    :return: bool - good or not
+    """
+    price = evaluated_listing.listing.price
+    value = evaluated_listing.predicted_value
+    condition = evaluated_listing.listing.condition.lower()
+    min_condition = min_condition.lower()
+
+    profit_threshold = price * float(min_returns)
+    profit = float(value - (price + settings.EXPENSES))
+
+    logging.info(f"Listing: {evaluated_listing.listing.url} evaluated. Price: {price}, Value: {value}, Profit: {profit}, Condition: {condition}")
+
+    if profit > profit_threshold and price <= max_price and settings.CONDITION_DICT[condition] >= settings.CONDITION_DICT[min_condition]:
+        return True
+
+    logging.info(f"Returns good: {profit > profit_threshold}, Price good: {price <= max_price}, Condition good: {settings.CONDITION_DICT[condition] >= settings.CONDITION_DICT[min_condition]}")
+    return False

@@ -29,7 +29,7 @@ class Parser:
         """Parses each listing, returning item_id, title, price, image_src, size, brand, condition, url and time"""
         try:
             brand = condition = size = None
-
+            print(listing_soup)
             img_tag = listing_soup.find("img")
             title_tag = listing_soup.find("a", {"class": "new-item-box__overlay new-item-box__overlay--clickable"})
             price_tag = listing_soup.find("p", {"data-testid": lambda x: x and "price-text" in x})

@@ -76,6 +76,7 @@ def parse_job(job):
     population_metrics = job["population_metrics"]
     value_dict = job["value_dict"]
     max_price = job["max_price"]
+    min_condition = job["min_condition"]
 
     data_path = settings.ROOT_DATA / f"{get_file_starter(brand, item)}.h5"
     id_path = settings.ROOT_ID / f"{(brand, item)}.pkl"
@@ -84,10 +85,23 @@ def parse_job(job):
     search = brand + '%20' + item
 
     if task == "silent":
-        return search, brand, item, task, id_path, data_path, None, None, None, None, None, None, None
+        return search, brand, item, task, id_path, data_path, None, None, None, None, None, None, None, None
 
     elif task == "alert":
-        return search, brand, item, task, id_path, data_path, price_threshold, model_path, model_type, num_classes, population_metrics, value_dict, max_price
+        return (search,
+                 brand,
+                 item,
+                 task,
+                 id_path,
+                 data_path,
+                 price_threshold,
+                 model_path,
+                 model_type,
+                 num_classes,
+                 population_metrics,
+                 value_dict,
+                 max_price,
+                 min_condition)
 
 class FatalScraperError(RuntimeError):
     """Unrecoverable error – scraper must stop."""
@@ -98,7 +112,20 @@ def load_job(job_file) -> JobObject:
     with open(job_file, "r") as f:
         job = json.load(f)
 
-    search, brand, item, task, id_path, data_path, price_threshold, model_path, model_type, num_classes, population_metrics, value_dict, max_price = parse_job(job)
+    (search,
+     brand,
+     item,
+     task,
+     id_path,
+     data_path,
+     price_threshold,
+     model_path,
+     model_type,
+     num_classes,
+     population_metrics,
+     value_dict,
+     max_price,
+     min_condition) = parse_job(job)
 
     if task == "alert":
         job_obj = JobObject(
@@ -112,7 +139,8 @@ def load_job(job_file) -> JobObject:
             population_metrics=population_metrics,
             value_dict=value_dict,
             data_storer=HDF5Storer(data_path),
-            max_price=max_price
+            max_price=max_price,
+            min_condition=min_condition
         )
     elif task == "silent":
         job_obj = JobObject(
@@ -126,7 +154,8 @@ def load_job(job_file) -> JobObject:
             population_metrics=None,
             value_dict=None,
             data_storer=HDF5Storer(data_path),
-            max_price=None
+            max_price=None,
+            min_condition = None
         )
 
     return job_obj

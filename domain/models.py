@@ -52,6 +52,7 @@ class JobObject:
     value_dict: Optional[dict]
     data_storer: storer.HDF5Storer
     max_price: Optional[float]
+    min_condition: Optional[str]
 
 @dataclass(frozen=True)
 class TickResult:

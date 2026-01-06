@@ -25,3 +25,11 @@ MAX_ERRORS = 3
 BLOCK_COOLDOWN_SECONDS = 60 * 60
 BLOCKED_EXIT_CODE = 67
 TIMEOUT_EXIT_CODE = 69
+
+CONDITION_DICT = {
+    'new with tags': 4,
+    'new without tags': 3,
+    'very good': 2,
+    'good': 1,
+    'satisfactory': 0
+}
