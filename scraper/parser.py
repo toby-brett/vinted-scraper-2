@@ -29,13 +29,20 @@ class Parser:
         """Parses each listing, returning item_id, title, price, image_src, size, brand, condition, url and time"""
         try:
             brand = condition = size = None
-            print(listing_soup)
+
             img_tag = listing_soup.find("img")
             title_tag = listing_soup.find("a", {"class": "new-item-box__overlay new-item-box__overlay--clickable"})
             price_tag = listing_soup.find("p", {"data-testid": lambda x: x and "price-text" in x})
             link_tag = listing_soup.find("a", {"data-testid": lambda x: x and "--overlay-link" in x})
 
             image_src = img_tag.get("src") or img_tag.get("data-src")
+
+            if title_tag is None:
+                html_preview = (str(listing_soup)[:2000] if listing_soup else "NO SOUP")
+                logging.error(f"Parse_listings: Title tag missing: {html_preview}")
+                return None
+            html_preview = (str(listing_soup)[:2000] if listing_soup else "NO SOUP")
+            logging.debug(f"Parse_listings: Title tag present: {html_preview}")
 
             title_text = title_tag.get("title", "").strip()
             deconstructed_title = [part.strip() for part in title_text.split(",")]
