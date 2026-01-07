@@ -9,7 +9,7 @@ import storage.storer as storer
 import vision.models as ML_models
 import vision.transforms as transforms
 
-def evaluate_price(listings: List[models.Listing], model: torch.nn.Module, population_metrics: str):
+def evaluate_price(listings: List[models.Listing], model: torch.nn.Module, population_metrics: str, price_offset: float):
 
     mean, std = population_metrics.split(' ')
     mean = float(mean)
@@ -42,12 +42,12 @@ def evaluate_price(listings: List[models.Listing], model: torch.nn.Module, popul
             logging.exception(f"vision/evaluator.py: Failed to un-normalize prediction: {e}")
             raise e
 
-        logging.info(f"Evaluated Listing: {listing.url}, Price: {listing.price}, Value: {value}")
+        logging.info(f"Evaluated Listing: {listing.url}, Price: {listing.price}, Value: {value}, Value after offset: {value - price_offset}, (offset: {price_offset})")
 
         evaluated_listings.append(
             models.EvaluatedListing(
                 listing=listing,
-                predicted_value=float(value),
+                predicted_value=float(value) - price_offset,
                 model_type="regression",
                 evaluated_at=datetime.datetime.now(),
                 confidence=None

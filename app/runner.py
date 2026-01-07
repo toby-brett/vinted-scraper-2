@@ -72,10 +72,10 @@ def tick(runtime: JobRuntime) -> TickResult:
         if job.task == "alert":
             try:
                 if job.model_type == "classification":
-                    listings_evaluated = evaluator.evaluate_class(listings=listings_filtered, model=job.model, value_dict=job.value_dict)
+                    listings_evaluated = evaluator.evaluate_class(listings=listings_filtered, model=job.model, value_dict=job.value_dict, price_offset=job.price_offset)
                     logging.info(f"Evaluated listings")
                 elif job.model_type == "regression":
-                    listings_evaluated = evaluator.evaluate_price(listings=listings_filtered, model=job.model, population_metrics=job.population_metrics)
+                    listings_evaluated = evaluator.evaluate_price(listings=listings_filtered, model=job.model, population_metrics=job.population_metrics, price_offset=job.price_offset)
                     logging.info(f"Evaluated listings")
                 else:
                     logging.exception("Model_type was neither classification or regression")
