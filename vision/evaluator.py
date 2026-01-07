@@ -56,7 +56,7 @@ def evaluate_price(listings: List[models.Listing], model: torch.nn.Module, popul
 
     return evaluated_listings
 
-def evaluate_class(listings: List[models.Listing], model: torch.nn.Module, value_dict: dict):
+def evaluate_class(listings: List[models.Listing], model: torch.nn.Module, value_dict: dict, price_offset: float):
     evaluated_listings = []
     for listing in listings:
         try:
@@ -85,12 +85,12 @@ def evaluate_class(listings: List[models.Listing], model: torch.nn.Module, value
             logging.exception(f"vision/evaluator.py: Failed to generate prediction: {e}")
             raise e
 
-        logging.info(f"Evaluated Listing: {listing.url}, Price: {listing.price}, Value: {value}")
+        logging.info(f"Evaluated Listing: {listing.url}, Price: {listing.price}, Value: {value}, Value after offset: {value - price_offset}, (price offset = {price_offset}")
 
         evaluated_listings.append(
             models.EvaluatedListing(
                 listing=listing,
-                predicted_value=float(value),
+                predicted_value=float(value) - price_offset,
                 model_type="classification",
                 evaluated_at=datetime.datetime.now(),
                 confidence=pred[index].item()
