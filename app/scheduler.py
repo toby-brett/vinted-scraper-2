@@ -87,7 +87,7 @@ def main():
                         logging.warning(f"[{runtime.job.search}] Error count = {errors}")
 
                     elif tick_result.return_status == "blocked":
-                        logging.info(f"[{runtime.job.search}] Blocked - creating new browser and sleeping 1 hour")
+                        logging.info(f"[{runtime.job.search}] Blocked - creating new browser and sleeping 3 hour")
                         time.sleep(settings.BLOCK_COOLDOWN_SECONDS)
                         break
 
