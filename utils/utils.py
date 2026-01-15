@@ -170,10 +170,14 @@ def load_jobs(job_folder) -> List[JobObject]:
     jobs: List[JobObject] = []
 
     for filename in sorted(os.listdir(job_folder)):
-        path = os.path.join(job_folder, filename)
+        if filename[0] != "&":
+            path = os.path.join(job_folder, filename)
 
-        if filename.lower().endswith(".json"):
-            job = load_job(path)
-            jobs.append(job)
+            if filename.lower().endswith(".json"):
+                job = load_job(path)
+                jobs.append(job)
+
+    if len(jobs) == 0:
+        return
 
     return jobs
