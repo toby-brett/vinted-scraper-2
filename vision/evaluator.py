@@ -11,7 +11,20 @@ import vision.transforms as transforms
 
 def evaluate_threshold(listings: List[models.Listing], threshold: int):
 
-    evaluated_listings =
+    evaluated_listings = []
+    for listing in listings:
+        evaluated_listings.append(
+            models.EvaluatedListing(
+                listing=listing,
+                predicted_value=0,
+                model_type="price",
+                evaluated_at=datetime.datetime.now(),
+                confidence=None
+            )
+        )
+
+    return evaluated_listings
+
 
 def evaluate_price(listings: List[models.Listing], model: torch.nn.Module, population_metrics: str, price_offset: float):
 
