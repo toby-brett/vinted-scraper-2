@@ -70,19 +70,37 @@ def tick(runtime: JobRuntime) -> TickResult:
 
     if len(listings_filtered) > 0:
         if job.task == "alert":
-            try:
-                listings_evaluated = evaluator.evaluate_price(listings=listings_filtered, model=job.model, population_metrics=job.population_metrics, price_offset=job.price_offset)
-                logging.info(f"Evaluated listings")
-            except Exception as e:
-                logging.exception(f"Failed to evaluate batches: {e}")
-                return TickResult(new=len(listings_filtered), stored=0, return_status="error", error=str(e), warnings=warnings)
+            if job.criteria == "model":
+                try:
+                    listings_evaluated = evaluator.evaluate_price(listings=listings_filtered, model=job.model, population_metrics=job.population_metrics, price_offset=job.price_offset)
+                    logging.info(f"Evaluated listings")
+                except Exception as e:
+                    logging.exception(f"Failed to evaluate batches: {e}")
+                    return TickResult(new=len(listings_filtered), stored=0, return_status="error", error=str(e), warnings=warnings)
 
-            try:
-                alert.alert(listings_evaluated, job.price_threshold, job.max_price, job.min_condition)
-                logging.info(f"Sent alert")
-            except Exception as e:
-                logging.exception(f"Failed to send alert: {e}")
-                warnings.append(f"sending alert failed:{type(e).__name__}:{e}")
+                try:
+                    alert.alert(listings_evaluated, job.price_threshold, job.max_price, job.min_condition)
+                    logging.info(f"Sent alert")
+                except Exception as e:
+                    logging.exception(f"Failed to send alert: {e}")
+                    warnings.append(f"sending alert failed:{type(e).__name__}:{e}")
+
+            elif job.criteria == "price":
+                try:
+                    listings_evaluated = evaluator.evaluate_threshold(listings=listings_filtered, threshold=job.threshold)
+                    logging.info(f"Evaluated listings")
+                except Exception as e:
+                    logging.exception(f"Failed to evaluate batches: {e}")
+                    return TickResult(new=len(listings_filtered), stored=0, return_status="error", error=str(e),
+                                      warnings=warnings)
+
+                try:
+                    alert.alert_threshold(listings_evaluated, job.price_threshold, job.max_price, job.min_condition)
+                    logging.info(f"Sent alert")
+                except Exception as e:
+                    logging.exception(f"Failed to send alert: {e}")
+                    warnings.append(f"sending alert failed:{type(e).__name__}:{e}")
+
 
         try:
             image_batch, metadata_batch = adapter.listings_to_batches(listings_filtered)

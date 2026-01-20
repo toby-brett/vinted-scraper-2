@@ -126,7 +126,7 @@ def load_job(job_file) -> JobObject:
      min_condition,
      price_offset) = parse_job(job)
 
-    if task == "alert":
+    if task == "alert" and criteria == "model":
         job_obj = JobObject(
             search=search,
             brand=brand,
@@ -142,6 +142,24 @@ def load_job(job_file) -> JobObject:
             min_condition=min_condition,
             price_offset=price_offset
         )
+
+    elif task == "alert" and criteria == "price":
+        job_obj = JobObject(
+            search=search,
+            brand=brand,
+            task=task,
+            criteria=criteria,
+            threshold=threshold,
+            id_path=id_path,
+            price_threshold=price_threshold,
+            model=None,
+            population_metrics=None,
+            data_storer=HDF5Storer(data_path),
+            max_price=max_price,
+            min_condition=min_condition,
+            price_offset=price_offset
+        )
+
     elif task == "silent":
         job_obj = JobObject(
             search=search,

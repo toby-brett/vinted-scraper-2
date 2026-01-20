@@ -71,3 +71,11 @@ def requirements(min_returns: float, min_condition: str, max_price: float, evalu
 
     logging.info(f"Returns good: {profit > profit_threshold}, Price good: {price <= max_price}, Condition good: {settings.CONDITION_DICT[condition] >= settings.CONDITION_DICT[min_condition]}")
     return False
+
+
+def alert_threshold(listings_evaluated, price_threshold, max_price, min_condition):
+    for listing in listings_evaluated:
+        if listing.price < price_threshold:
+            send_telegram(listing.price, listing.listing.title, listing.listing.url, 0)
+
+    return None

@@ -9,6 +9,10 @@ import storage.storer as storer
 import vision.models as ML_models
 import vision.transforms as transforms
 
+def evaluate_threshold(listings: List[models.Listing], threshold: int):
+
+    evaluated_listings =
+
 def evaluate_price(listings: List[models.Listing], model: torch.nn.Module, population_metrics: str, price_offset: float):
 
     mean, std = population_metrics.split(' ')
