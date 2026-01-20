@@ -44,12 +44,12 @@ class JobObject:
     search: str
     brand: str
     task: str
-    model_type: Optional[str]
+    criteria: str
+    threshold: int
     id_path: str
     price_threshold: Optional[float]
     model: Optional[torch.nn.Module]
     population_metrics: Optional[str]
-    value_dict: Optional[dict]
     data_storer: storer.HDF5Storer
     max_price: Optional[float]
     min_condition: Optional[str]

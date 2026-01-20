@@ -67,14 +67,12 @@ def parse_job(job):
 
     brand = job["brand"]
     item = job["item"]
-    pages = job["pages"]
     task = job["task"]
-    model_type = job["model_type"]
     model_path = job["model_path"]
     price_threshold = job["price_threshold"]
-    num_classes = job["num_classes"]
     population_metrics = job["population_metrics"]
-    value_dict = job["value_dict"]
+    criteria = job["criteria"]
+    threshold = job["threshold"]
     max_price = job["max_price"]
     min_condition = job["min_condition"]
     price_offset = job['price_offset']
@@ -86,23 +84,22 @@ def parse_job(job):
     search = brand + '%20' + item
 
     if task == "silent":
-        return search, brand, item, task, id_path, data_path, None, None, None, None, None, None, None, None, None
+        return search, brand, item, task, None, None, id_path, data_path, None, None, None, None, None, None
 
     elif task == "alert":
         return (search,
-                 brand,
-                 item,
-                 task,
-                 id_path,
-                 data_path,
-                 price_threshold,
-                 model_path,
-                 model_type,
-                 num_classes,
-                 population_metrics,
-                 value_dict,
-                 max_price,
-                 min_condition,
+                brand,
+                item,
+                task,
+                criteria,
+                threshold,
+                id_path,
+                data_path,
+                price_threshold,
+                model_path,
+                population_metrics,
+                max_price,
+                min_condition,
                 price_offset)
 
 class FatalScraperError(RuntimeError):
@@ -118,14 +115,13 @@ def load_job(job_file) -> JobObject:
      brand,
      item,
      task,
+     criteria,
+     threshold,
      id_path,
      data_path,
      price_threshold,
      model_path,
-     model_type,
-     num_classes,
      population_metrics,
-     value_dict,
      max_price,
      min_condition,
      price_offset) = parse_job(job)
@@ -135,12 +131,12 @@ def load_job(job_file) -> JobObject:
             search=search,
             brand=brand,
             task=task,
-            model_type=model_type,
+            criteria=criteria,
+            threshold=threshold,
             id_path=id_path,
             price_threshold=price_threshold,
             model=load_model(model_path, model_type=model_type),
             population_metrics=population_metrics,
-            value_dict=value_dict,
             data_storer=HDF5Storer(data_path),
             max_price=max_price,
             min_condition=min_condition,
@@ -151,12 +147,12 @@ def load_job(job_file) -> JobObject:
             search=search,
             brand=brand,
             task=task,
-            model_type=None,
+            criteria=criteria,
+            threshold=threshold,
             id_path=id_path,
             price_threshold=None,
             model=None,
             population_metrics=None,
-            value_dict=None,
             data_storer=HDF5Storer(data_path),
             max_price=None,
             min_condition = None,

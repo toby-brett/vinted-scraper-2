@@ -66,21 +66,13 @@ def tick(runtime: JobRuntime) -> TickResult:
         new_ids = cleaner.get_ids_from_listings(listings_filtered)
         logging.info("ID's found")
     except Exception as e:
-        return TickResult(new=len(listings_filtered), stored=0, return_status="error", error="Failed to get ids", warnings=warnings)
+        return TickResult(new=len(listings_filtered), stored=0, return_status="error", error=f"Failed to get ids: {e}", warnings=warnings)
 
     if len(listings_filtered) > 0:
         if job.task == "alert":
             try:
-                if job.model_type == "classification":
-                    listings_evaluated = evaluator.evaluate_class(listings=listings_filtered, model=job.model, value_dict=job.value_dict, price_offset=job.price_offset)
-                    logging.info(f"Evaluated listings")
-                elif job.model_type == "regression":
-                    listings_evaluated = evaluator.evaluate_price(listings=listings_filtered, model=job.model, population_metrics=job.population_metrics, price_offset=job.price_offset)
-                    logging.info(f"Evaluated listings")
-                else:
-                    logging.exception("Model_type was neither classification or regression")
-                    return TickResult(new=len(listings_filtered), stored=0, return_status="error", error="Model_type was neither classification or regression", warnings=warnings)
-
+                listings_evaluated = evaluator.evaluate_price(listings=listings_filtered, model=job.model, population_metrics=job.population_metrics, price_offset=job.price_offset)
+                logging.info(f"Evaluated listings")
             except Exception as e:
                 logging.exception(f"Failed to evaluate batches: {e}")
                 return TickResult(new=len(listings_filtered), stored=0, return_status="error", error=str(e), warnings=warnings)
