@@ -135,7 +135,7 @@ def load_job(job_file) -> JobObject:
             threshold=threshold,
             id_path=id_path,
             price_threshold=price_threshold,
-            model=load_model(model_path, model_type=model_type),
+            model=load_model(model_path, model_type="regression"),
             population_metrics=population_metrics,
             data_storer=HDF5Storer(data_path),
             max_price=max_price,
