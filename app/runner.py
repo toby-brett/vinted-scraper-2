@@ -95,7 +95,7 @@ def tick(runtime: JobRuntime) -> TickResult:
                                       warnings=warnings)
 
                 try:
-                    alert.alert_threshold(listings_evaluated, job.price_threshold, job.max_price, job.min_condition)
+                    alert.alert_threshold(listings_evaluated, job.threshold, job.max_price, job.min_condition)
                     logging.info(f"Sent alert")
                 except Exception as e:
                     logging.exception(f"Failed to send alert: {e}")
