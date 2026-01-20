@@ -75,6 +75,8 @@ def requirements(min_returns: float, min_condition: str, max_price: float, evalu
 
 def alert_threshold(listings_evaluated: List[models.EvaluatedListing], price_threshold, max_price, min_condition):
     for listing in listings_evaluated:
+        logging.info(
+        f"Listing: {listing.listing.url} evaluated. Price: {listing.listing.price}, Threshold: {price_threshold}")
         if listing.listing.price < price_threshold:
             send_telegram(listing.listing.price, listing.listing.title, listing.listing.url, 0)
 
