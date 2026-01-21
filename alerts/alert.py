@@ -68,7 +68,7 @@ def requirements(price_threshold: float, min_condition: str, max_price: float, e
     if profit > price_threshold and float(price) <= float(max_price) and settings.CONDITION_DICT[condition] >= settings.CONDITION_DICT[min_condition]:
         return True
 
-    logging.info(f"Returns good: {profit > price_threshold}, Price good: {float(price) <= float(max_price)}, Condition good: {settings.CONDITION_DICT[condition] >= settings.CONDITION_DICT[min_condition]}")
+    logging.info(f"Profit good: {profit > price_threshold}, Price good: {float(price) <= float(max_price)}, Condition good: {settings.CONDITION_DICT[condition] >= settings.CONDITION_DICT[min_condition]}")
     return False
 
 
