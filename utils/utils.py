@@ -68,7 +68,7 @@ def parse_job(job):
     brand = job["brand"]
     item = job["item"]
     task = job["task"]
-    model_path = job["model_path"]
+    model_path = job["current_model_path"]
     price_threshold = job["price_threshold"]
     population_metrics = job["population_metrics"]
     criteria = job["criteria"]
