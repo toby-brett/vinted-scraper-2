@@ -47,11 +47,11 @@ def alert(listings_evaluated: List[models.EvaluatedListing], price_threshold: fl
         if requirements(price_threshold, min_condition, max_price, listing):
             send_telegram(price, listing.listing.title, listing.listing.url, value)
 
-def requirements(min_returns: float, min_condition: str, max_price: float, evaluated_listing: EvaluatedListing):
+def requirements(price_threshold: float, min_condition: str, max_price: float, evaluated_listing: EvaluatedListing):
     """
     Checks that some base requirements are met
+    :param price_threshold: the profit needed for alert to be sent
     :param evaluated_listing: the listing
-    :param min_returns: least return acceptable to trigger an alert
     :param min_condition: worst condition to trigger alert
     :param max_price: highest price to trigger alert
     :return: bool - good or not
@@ -61,15 +61,14 @@ def requirements(min_returns: float, min_condition: str, max_price: float, evalu
     condition = evaluated_listing.listing.condition.lower()
     min_condition = min_condition.lower()
 
-    profit_threshold = price * float(min_returns)
     profit = float(value - (price + settings.EXPENSES))
 
     logging.info(f"Listing: {evaluated_listing.listing.url} evaluated. Price: {price}, Value: {value}, Profit: {profit}, Condition: {condition}")
 
-    if profit > profit_threshold and float(price) <= float(max_price) and settings.CONDITION_DICT[condition] >= settings.CONDITION_DICT[min_condition]:
+    if profit > price_threshold and float(price) <= float(max_price) and settings.CONDITION_DICT[condition] >= settings.CONDITION_DICT[min_condition]:
         return True
 
-    logging.info(f"Returns good: {profit > profit_threshold}, Price good: {float(price) <= float(max_price)}, Condition good: {settings.CONDITION_DICT[condition] >= settings.CONDITION_DICT[min_condition]}")
+    logging.info(f"Returns good: {profit > price_threshold}, Price good: {float(price) <= float(max_price)}, Condition good: {settings.CONDITION_DICT[condition] >= settings.CONDITION_DICT[min_condition]}")
     return False
 
 
