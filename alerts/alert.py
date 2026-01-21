@@ -66,10 +66,10 @@ def requirements(min_returns: float, min_condition: str, max_price: float, evalu
 
     logging.info(f"Listing: {evaluated_listing.listing.url} evaluated. Price: {price}, Value: {value}, Profit: {profit}, Condition: {condition}")
 
-    if profit > profit_threshold and price <= max_price and settings.CONDITION_DICT[condition] >= settings.CONDITION_DICT[min_condition]:
+    if profit > profit_threshold and float(price) <= float(max_price) and settings.CONDITION_DICT[condition] >= settings.CONDITION_DICT[min_condition]:
         return True
 
-    logging.info(f"Returns good: {profit > profit_threshold}, Price good: {price <= max_price}, Condition good: {settings.CONDITION_DICT[condition] >= settings.CONDITION_DICT[min_condition]}")
+    logging.info(f"Returns good: {profit > profit_threshold}, Price good: {float(price) <= float(max_price)}, Condition good: {settings.CONDITION_DICT[condition] >= settings.CONDITION_DICT[min_condition]}")
     return False
 
 
