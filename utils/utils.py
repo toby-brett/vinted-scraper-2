@@ -79,7 +79,6 @@ def parse_job(job):
 
     data_path = settings.ROOT_DATA / f"{get_file_starter(brand, item)}.h5"
     id_path = settings.ROOT_ID / f"{(brand, item)}.pkl"
-    model_path = settings.ROOT_MODELS / model_path
 
     search = brand + '%20' + item
 
