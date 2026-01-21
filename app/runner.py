@@ -79,7 +79,7 @@ def tick(runtime: JobRuntime) -> TickResult:
                     return TickResult(new=len(listings_filtered), stored=0, return_status="error", error=str(e), warnings=warnings)
 
                 try:
-                    alert.alert(listings_evaluated, job.price_threshold, job.max_price, job.min_condition)
+                    alert.alert(listings_evaluated, job.threshold, job.max_price or 0, job.min_condition or 0)
                     logging.info(f"Sent alert")
                 except Exception as e:
                     logging.exception(f"Failed to send alert: {e}")
