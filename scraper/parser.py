@@ -21,8 +21,10 @@ class Parser:
         ]
         return product_listings
 
-
-
+    @staticmethod
+    def parse_inside_listing(listing_soup):
+        print("LISTING")
+        print(listing_soup)
 
     @staticmethod
     def parse_listing(listing_soup) -> models.Listing:

@@ -88,6 +88,22 @@ class BrowserSession:
 
         return BeautifulSoup(html, "lxml")
 
+    def fetch_listing_html(self, url):
+        self.page.goto(url, timeout=60000, wait_until="load")
+        # If Cloudflare challenge appears, wait it out
+        if "Just a moment" in self.page.title():
+            logging.info("Cloudflare challenge detected, waiting...")
+            self.page = self.context.new_page()
+            raise BlockedError("Cloudflare challenge detected")
+
+        try:
+            html = self.page.content()
+        except Exception as e:
+            logging.exception(f"Failed to load page: {e}")
+            raise TimeoutError
+
+        return BeautifulSoup(html, "lxml")
+
     def reset_page(self):
         if self.page:
             self.page.close()
