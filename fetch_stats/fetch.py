@@ -68,7 +68,15 @@ def compute_volume(brand: str, item: str) -> float:
                 hours = int(num.group()) if num else 1
                 return len(listings) * (12 / hours)
 
-            return len(listings)
+            if "day" in time_text:
+                if "a" in time_text:
+                    return len(listings)
+                num = re.search(r"\d+", time_text)
+                days = int(num.group()) if num else 1
+                return len(listings) * (1 / days)
+
+            else:
+                return int(str(len(listings))[-1])
 
         # If all timestamps were None and we never returned:
         return len(listings)
