@@ -36,28 +36,6 @@ vinted-scraper-2/
 - **PyTorch** - CNN model training and inference
 - **scikit-learn** - supporting ML utilities
 
-## Setup
-
-### Local
-## Requirements
-- Python 3.11
-
-> Note: Dependencies are pinned and may not be compatible with Python 3.12+.
-```bash
-pip install -r requirements.txt
-playwright install chromium
-python -m app.scheduler
-```
-
-
-## Configuration
-
-Edit the files in `config/` to set:
-
-- Search queries (e.g. `"nike air max 90 white size 10"`)
-- Price thresholds (minimum discount to trigger alert)
-- Notification credentials
-
 ## Notes
 
 - The CNN was trained on scraped Vinted data, mapping listing images to prices. It is not a general clothing price model — performance varies by category and how well the training data covers the query.
