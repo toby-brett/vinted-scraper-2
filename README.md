@@ -39,7 +39,10 @@ vinted-scraper-2/
 ## Setup
 
 ### Local
+## Requirements
+- Python 3.11
 
+> Note: Dependencies are pinned and may not be compatible with Python 3.12+.
 ```bash
 pip install -r requirements.txt
 playwright install chromium
